@@ -1,7 +1,7 @@
 package com.hejie.tmall_ssm.service.impl;
 
 import com.hejie.tmall_ssm.mapper.CategoryMapper;
-import com.hejie.tmall_ssm.util.Page;
+import com.hejie.tmall_ssm.pojo.CategoryExample;
 import com.hejie.tmall_ssm.pojo.Category;
 import com.hejie.tmall_ssm.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,37 +9,41 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+  * @Program: tmall_ssm
+  * @Description: Category接口实现类
+  * @Author: hejie
+  * @Create: 2019/6/25
+  */
 @Service
 public class CategoryServiceImpl implements CategoryService {
+
     @Autowired CategoryMapper categoryMapper;
 
     @Override
-    public List<Category> list(Page page) {
-        return categoryMapper.list(page);
-    }
-
-    @Override
-    public int total() {
-        return categoryMapper.total();
+    public List<Category> list() {
+        CategoryExample categoryExample = new CategoryExample();
+        categoryExample.setOrderByClause("id asc");
+        return categoryMapper.selectByExample(categoryExample);
     }
 
     @Override
     public void add(Category category) {
-        categoryMapper.add(category);
+        categoryMapper.insert(category);
     }
 
     @Override
     public void delete(int id) {
-        categoryMapper.delete(id);
+        categoryMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public Category get(int id) {
-        return categoryMapper.get(id);
+        return categoryMapper.selectByPrimaryKey(id);
     }
 
     @Override
     public void update(Category category) {
-        categoryMapper.update(category);
+        categoryMapper.updateByPrimaryKey(category);
     }
 }

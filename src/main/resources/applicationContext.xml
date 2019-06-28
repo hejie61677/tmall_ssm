@@ -10,12 +10,15 @@
 
     <!-- 导入数据库配置文件 -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
+
     <!-- 配置数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 url、user、password -->
         <property name="url" value="${jdbc.url}" />
         <property name="username" value="${jdbc.username}" />
         <property name="password" value="${jdbc.password}" />
+        <!-- 这一项可配可不配，如果不配置druid会根据url自动识别dbType，然后选择相应的driverClassName(建议配置下)-->
+        <property name="driverClassName" value="${jdbc.driver}" />
 
         <!-- 配置初始化大小、最小、最大 -->
         <property name="initialSize" value="1" />
@@ -47,7 +50,7 @@
         <property name="typeAliasesPackage" value="com.hejie.tmall_ssm.pojo" />
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
-        <!--分页插件，目前先注释，后面重构的时候才会使用
+        <!--分页插件-->
         <property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageInterceptor">
@@ -58,7 +61,7 @@
                 </bean>
             </array>
         </property>
-        -->
+
     </bean>
 
     <!--Mybatis的Mapper文件识别-->

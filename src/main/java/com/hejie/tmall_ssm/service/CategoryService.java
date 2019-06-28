@@ -1,12 +1,17 @@
 package com.hejie.tmall_ssm.service;
 
 import com.hejie.tmall_ssm.pojo.Category;
-import com.hejie.tmall_ssm.util.Page;
 import java.util.List;
 
+/**
+  * @Program: tmall_ssm
+  * @Description: Category服务接口
+  * @Author: hejie
+  * @Create: 2019/6/25
+  */
 public interface CategoryService{
-    int total();
-    List<Category> list(Page page);
+
+    List<Category> list();
 
     void add(Category category);
 
