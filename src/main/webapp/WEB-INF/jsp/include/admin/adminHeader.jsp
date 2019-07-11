@@ -21,6 +21,7 @@ function checkEmpty(id, name){
 	}
 	return true;
 }
+
 function checkNumber(id, name){
 	var value = $("#"+id).val();
 	if(value.length==0){
@@ -33,9 +34,9 @@ function checkNumber(id, name){
 		$("#"+id)[0].focus();
 		return false;
 	}
-	
 	return true;
 }
+
 function checkInt(id, name){
 	var value = $("#"+id).val();
 	if(value.length==0){
@@ -48,7 +49,6 @@ function checkInt(id, name){
 		$("#"+id)[0].focus();
 		return false;
 	}
-	
 	return true;
 }
 

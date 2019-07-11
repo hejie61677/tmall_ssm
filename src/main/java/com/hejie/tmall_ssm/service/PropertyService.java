@@ -23,6 +23,6 @@ public interface PropertyService {
 
     PropertyExpand getPe(int id);
 
-    void update(Property category);
+    void update(Property property);
 
 }
