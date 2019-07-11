@@ -7,20 +7,20 @@
 <script>
     $(function(){
 
-        $("#addFormSingle").submit( function() {
+        $(".addFormSingle").submit( function() {
             if (checkEmpty("filePathSingle", "图片文件")) {
                 $("#filePathSingle").value("");
-                return false;
-            } else {
                 return true;
+            } else {
+                return false;
             }
         });
 
-        $("#addFormDetail").submit( function() {
+        $(".addFormDetail").submit( function() {
             if (checkEmpty("filePathDetail", "图片文件")) {
-                return false;
-            } else {
                 return true;
+            } else {
+                return false;
             }
         });
     });
@@ -81,7 +81,7 @@
                                 <td>${pi.id}</td>
                                 <td>
                                     <a title="点击查看原图" href="img/productSingle/${pi.id}.jpg">
-                                        <img src="img/productSingle/${pi.id}.jpg"/>
+                                        <img height="50px" src="img/productSingle/${pi.id}.jpg"/>
                                     </a>
                                 </td>
                                 <td>
@@ -135,7 +135,7 @@
                                 <td>${pi.id}</td>
                                 <td>
                                     <a title="点击查看原图" href="img/productDetail/${pi.id}.jpg">
-                                        <img src="img/productDetail/${pi.id}.jpg">
+                                        <img height="50px" src="img/productDetail/${pi.id}.jpg">
                                     </a>
                                 </td>
                                 <td>
