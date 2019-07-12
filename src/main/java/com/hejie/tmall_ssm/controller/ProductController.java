@@ -39,7 +39,7 @@ public class ProductController {
     public String list(int cid, Model model, Page page) {
         Category category = categoryService.get(cid);
         PageHelper.offsetPage(page.getStart(), page.getCount());
-        List<Product> products = productService.list(cid);
+        List<ProductExpand> products = productService.listPe(cid);
         int total = (int) new PageInfo<>(products).getTotal();
         page.setTotal(total);
         page.setParam("&cid=" + category.getId());

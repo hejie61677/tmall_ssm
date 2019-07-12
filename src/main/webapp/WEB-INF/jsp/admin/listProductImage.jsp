@@ -8,20 +8,11 @@
     $(function(){
 
         $(".addFormSingle").submit( function() {
-            if (checkEmpty("filePathSingle", "图片文件")) {
-                $("#filePathSingle").value("");
-                return true;
-            } else {
-                return false;
-            }
+            return checkEmpty("filePathSingle", "图片文件");
         });
 
         $(".addFormDetail").submit( function() {
-            if (checkEmpty("filePathDetail", "图片文件")) {
-                return true;
-            } else {
-                return false;
-            }
+            return checkEmpty("filePathDetail", "图片文件");
         });
     });
 
@@ -60,7 +51,7 @@
                                         <td align="center">
                                             <input type="hidden" name="type" value="type_single"/>
                                             <input type="hidden" name="pid" value="${p.id}"/>
-                                            <botton type="submit" class="btn btn-success">提交</botton>
+                                            <button type="submit" class="btn btn-success">提交</button>
                                         </td>
                                     </tr>
                                 </table>

@@ -54,9 +54,7 @@ public class PropertyServiceImpl implements PropertyService {
         Property property = propertyMapper.selectByPrimaryKey(id);
         PropertyExpand propertyExpand = new PropertyExpand();
         propertyExpand.setCategory(categoryMapper.selectByPrimaryKey(property.getCid()));
-        propertyExpand.setCid(property.getCid());
-        propertyExpand.setId(property.getId());
-        propertyExpand.setName(property.getName());
+        propertyExpand.setProperty(property);
         return propertyExpand;
     }
 

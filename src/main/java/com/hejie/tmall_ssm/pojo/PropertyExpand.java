@@ -17,4 +17,10 @@ public class PropertyExpand extends Property {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public void setProperty(Property property) {
+        this.setName(property.getName());
+        this.setId(property.getId());
+        this.setCid(property.getCid());
+    }
 }

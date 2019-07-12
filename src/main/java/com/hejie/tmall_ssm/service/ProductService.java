@@ -15,6 +15,8 @@ public interface ProductService {
 
     List<Product> list(int cid);
 
+    List<ProductExpand> listPe(int cid);
+
     void add(Product product);
 
     void delete(int id);
@@ -24,5 +26,7 @@ public interface ProductService {
     ProductExpand getPe(int id);
 
     void update(Product product);
+
+    void setFirstProductImage(ProductExpand productExpand);
 
 }
