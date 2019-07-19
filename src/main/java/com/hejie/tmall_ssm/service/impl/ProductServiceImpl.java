@@ -73,6 +73,7 @@ public class ProductServiceImpl implements ProductService {
         ProductExpand productExpand = new ProductExpand();
         productExpand.setCategory(categoryMapper.selectByPrimaryKey(product.getCid()));
         productExpand.setProduct(product);
+        setFirstProductImage(productExpand);
         return productExpand;
     }
 
