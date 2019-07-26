@@ -1,6 +1,8 @@
 package com.hejie.tmall_ssm.service;
 
 import com.hejie.tmall_ssm.pojo.Category;
+import com.hejie.tmall_ssm.pojo.CategoryExpand;
+
 import java.util.List;
 
 /**
@@ -12,6 +14,8 @@ import java.util.List;
 public interface CategoryService{
 
     List<Category> list();
+
+    List<CategoryExpand> listE();
 
     void add(Category category);
 

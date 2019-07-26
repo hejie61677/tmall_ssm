@@ -1,3 +1,3 @@
 <%
-    response.sendRedirect("../admin_category_list");
+    response.sendRedirect("../tmall_ssm/admin_category_list");
 %>

@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/admin/adminHeader.jsp"%>
@@ -14,8 +14,8 @@
         $(".addFormDetail").submit( function() {
             return checkEmpty("filePathDetail", "图片文件");
         });
-    });
 
+    })
 </script>
 
 <title>产品图片管理</title>
@@ -27,7 +27,6 @@
         <li class="active">${p.name}</li>
         <li class="active">产品图片管理</li>
     </ol>
-
     <table class="addPictureTable" align="center">
         <tr>
             <td class="addPictureTableTD">
@@ -44,13 +43,13 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input id="filePathSingle" type="file" name="image"/>
+                                            <input id="filePathSingle" type="file" name="image">
                                         </td>
                                     </tr>
                                     <tr class="submitTR">
                                         <td align="center">
-                                            <input type="hidden" name="type" value="type_single"/>
-                                            <input type="hidden" name="pid" value="${p.id}"/>
+                                            <input type="hidden" name="type" value="type_single">
+                                            <input type="hidden" name="pid" value="${p.id}">
                                             <button type="submit" class="btn btn-success">提交</button>
                                         </td>
                                     </tr>
@@ -98,13 +97,13 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input id="filePathDetail" type="file" name="image"/>
+                                            <input id="filePathDetail" type="file" name="image">
                                         </td>
                                     </tr>
                                     <tr class="submitTR">
                                         <td align="center">
-                                            <input type="hidden" name="type" value="type_detail"/>
-                                            <input type="hidden" name="pid" value="${p.id}"/>
+                                            <input type="hidden" name="type" value="type_detail">
+                                            <input type="hidden" name="pid" value="${p.id}">
                                             <button type="submit" class="btn btn-success">提交</button>
                                         </td>
                                     </tr>

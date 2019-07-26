@@ -1,21 +1,19 @@
-﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/admin/adminHeader.jsp"%>
 <%@ include file="../include/admin/adminNavigator.jsp"%>
 
 <script>
-    $(function(){
-
-        $("#addForm").submit(function(){
+    $(function() {
+        $("#addForm").submit(function() {
             if(!checkEmpty("name","分类名称")) {
                 return false;
             } else {
                 return checkEmpty("categoryPic", "分类图片");
             }
         });
-    });
-
+    })
 </script>
 
 <title>分类管理</title>
@@ -64,12 +62,14 @@
                 <table class="addTable">
                     <tr>
                         <td>分类名称</td>
-                        <td><input  id="name" name="name" type="text" class="form-control"></td>
+                        <td>
+                            <input id="name" name="name" type="text" class="form-control">
+                        </td>
                     </tr>
                     <tr>
                         <td>分类图片</td>
                         <td>
-                            <input id="categoryPic" accept="image/*" type="file" name="image" />
+                            <input id="categoryPic" accept="image/*" type="file" name="image">
                         </td>
                     </tr>
                     <tr class="submitTR">
@@ -81,7 +81,6 @@
             </form>
         </div>
     </div>
-
 </div>
 
 <%@include file="../include/admin/adminFooter.jsp"%>

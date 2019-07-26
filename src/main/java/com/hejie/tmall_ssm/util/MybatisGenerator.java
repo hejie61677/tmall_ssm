@@ -21,14 +21,14 @@ public class MybatisGenerator {
 
     public static void main(String[] args) throws Exception {
 
-        String endDay = "2019-06-25";
+        String endDay = "2019-07-25";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = simpleDateFormat.parse(endDay);
         Date now = new Date();
 
         if(now.getYear() == date.getYear() && now.getMonth() == date.getMonth() && now.getDay() == date.getDay()) {
 
-            List<String> warnings = new ArrayList<String>();
+            List<String> warnings = new ArrayList<>();
             boolean overWrite = true;
             InputStream inputStream = MyBatisGenerator.class.getClassLoader().getResource("generatorConfig.xml").openStream();
             ConfigurationParser configurationParser = new ConfigurationParser(warnings);

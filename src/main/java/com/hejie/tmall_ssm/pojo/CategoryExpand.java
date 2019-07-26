@@ -1,10 +1,37 @@
 package com.hejie.tmall_ssm.pojo;
 
+import java.util.List;
+
 /**
  * @program: tmall_ssm
- * @description:
+ * @description: Category拓展类
  * @author: hejie
  * @create: 2019-07-19 16:21
  */
-public class CategoryExpand {
+public class CategoryExpand extends Category {
+
+    private List<ProductExpand> products;
+
+    private List<List<ProductExpand>> productsByRow;
+
+    public void setCategory(Category category) {
+        this.setId(category.getId());
+        this.setName(category.getName());
+    }
+
+    public List<ProductExpand> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductExpand> products) {
+        this.products = products;
+    }
+
+    public List<List<ProductExpand>> getProductsByRow() {
+        return productsByRow;
+    }
+
+    public void setProductsByRow(List<List<ProductExpand>> productsByRow) {
+        this.productsByRow = productsByRow;
+    }
 }

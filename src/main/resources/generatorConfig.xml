@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
+
+    <!-- 引入数据库配置文件 -->
+    <properties resource="jdbc.properties"/>
+
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
         <!--避免生成重复代码的插件-->
@@ -16,8 +20,8 @@
         </commentGenerator>
 
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/tmall_database"
-                        userId="root" password="Hejie123">
+        <jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}" password="${jdbc.password}">
         </jdbcConnection>
 
         <javaTypeResolver>

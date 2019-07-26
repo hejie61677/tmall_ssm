@@ -1,5 +1,6 @@
 package com.hejie.tmall_ssm.service;
 
+import com.hejie.tmall_ssm.pojo.CategoryExpand;
 import com.hejie.tmall_ssm.pojo.Product;
 import com.hejie.tmall_ssm.pojo.ProductExpand;
 
@@ -28,5 +29,11 @@ public interface ProductService {
     void update(Product product);
 
     void setFirstProductImage(ProductExpand productExpand);
+
+    void fill(List<CategoryExpand> categoryExpands);
+
+    void fill(CategoryExpand categoryExpand);
+
+    void fillByRow(List<CategoryExpand> categoryExpands);
 
 }

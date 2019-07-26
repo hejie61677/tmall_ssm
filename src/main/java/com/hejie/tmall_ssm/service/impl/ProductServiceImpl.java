@@ -2,10 +2,7 @@ package com.hejie.tmall_ssm.service.impl;
 
 import com.hejie.tmall_ssm.mapper.CategoryMapper;
 import com.hejie.tmall_ssm.mapper.ProductMapper;
-import com.hejie.tmall_ssm.pojo.Product;
-import com.hejie.tmall_ssm.pojo.ProductExample;
-import com.hejie.tmall_ssm.pojo.ProductExpand;
-import com.hejie.tmall_ssm.pojo.ProductImage;
+import com.hejie.tmall_ssm.pojo.*;
 import com.hejie.tmall_ssm.service.ProductImageService;
 import com.hejie.tmall_ssm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,6 +85,38 @@ public class ProductServiceImpl implements ProductService {
         if (!productImages.isEmpty()) {
             ProductImage productImage = productImages.get(0);
             productExpand.setFirstProductImage(productImage);
+        }
+    }
+
+    @Override
+    public void fill(List<CategoryExpand> categoryExpands) {
+        for (CategoryExpand categoryExpand : categoryExpands) {
+            fill(categoryExpand);
+        }
+    }
+
+    @Override
+    public void fill(CategoryExpand categoryExpand) {
+        List<ProductExpand> productExpands = listPe(categoryExpand.getId());
+        categoryExpand.setProducts(productExpands);
+    }
+
+    @Override
+    public void fillByRow(List<CategoryExpand> categoryExpands) {
+        int productNumberEachRow = 8;
+
+        for (CategoryExpand categoryExpand : categoryExpands) {
+            List<ProductExpand> products = categoryExpand.getProducts();
+            List<List<ProductExpand>> productsByRow = new ArrayList<>();
+
+            for (int i = 0; i < products.size(); i += productNumberEachRow) {
+                int size = i + productNumberEachRow;
+                size = size > products.size() ? products.size() : size;
+                List<ProductExpand> productOfEachRow = products.subList(i, size);
+                productsByRow.add(productOfEachRow);
+            }
+
+            categoryExpand.setProductsByRow(productsByRow);
         }
     }
 

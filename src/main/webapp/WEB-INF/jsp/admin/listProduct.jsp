@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/admin/adminHeader.jsp"%>
@@ -6,7 +6,6 @@
 
 <script>
     $(function(){
-
         $("#addForm").submit( function() {
             if (!checkEmpty("name", "产品名称")) {
                 return false;
@@ -22,7 +21,7 @@
                 return true;
             }
         });
-    });
+    })
 
 </script>
 
@@ -34,7 +33,6 @@
         <li><a href="admin_product_list?cid=${c.id}">${c.name}</a></li>
         <li class="active">产品管理</li>
     </ol>
-
     <div class="listDataTableDiv">
         <table class="table table-striped table-bordered table-hover table-condensed">
             <thead>
@@ -87,23 +85,33 @@
                 <table class="addTable">
                     <tr>
                         <td>产品名称</td>
-                        <td><input  id="name" name="name" type="text" class="form-control"></td>
+                        <td>
+                            <input id="name" name="name" type="text" class="form-control">
+                        </td>
                     </tr>
                     <tr>
                         <td>产品小标题</td>
-                        <td><input  id="sub_title" name="sub_title" type="text" class="form-control"></td>
+                        <td>
+                            <input id="sub_title" name="sub_title" type="text" class="form-control">
+                        </td>
                     </tr>
                     <tr>
                         <td>原价格</td>
-                        <td><input  id="original_price" name="original_price" type="text" class="form-control"></td>
+                        <td>
+                            <input id="original_price" name="original_price" type="text" class="form-control">
+                        </td>
                     </tr>
                     <tr>
                         <td>优惠价格</td>
-                        <td><input  id="promote_price" name="promote_price" type="text" class="form-control"></td>
+                        <td>
+                            <input id="promote_price" name="promote_price" type="text" class="form-control">
+                        </td>
                     </tr>
                     <tr>
                         <td>库存</td>
-                        <td><input  id="stock" name="stock" type="number" class="form-control"></td>
+                        <td>
+                            <input id="stock" name="stock" type="number" class="form-control">
+                        </td>
                     </tr>
                     <tr class="submitTR">
                         <td colspan="2" align="center">

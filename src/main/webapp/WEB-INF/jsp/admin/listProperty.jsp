@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../include/admin/adminHeader.jsp"%>
@@ -6,7 +6,6 @@
 
 <script>
     $(function(){
-
         $("#addForm").submit(function(){
             if(checkEmpty("name","属性名称")) {
                 return true;
@@ -14,8 +13,7 @@
                 return false;
             }
         });
-    });
-
+    })
 </script>
 
 <title>属性管理</title>
@@ -26,7 +24,6 @@
         <li><a href="admin_property_list?cid=${c.id}">${c.name}</a></li>
         <li class="active">属性管理</li>
     </ol>
-
     <div class="listDataTableDiv">
         <table class="table table-striped table-bordered table-hover table-condensed">
             <thead>
@@ -61,7 +58,9 @@
                 <table class="addTable">
                     <tr>
                         <td>属性名称</td>
-                        <td><input  id="name" name="name" type="text" class="form-control"></td>
+                        <td>
+                            <input id="name" name="name" type="text" class="form-control">
+                        </td>
                     </tr>
                     <tr class="submitTR">
                         <td colspan="2" align="center">
