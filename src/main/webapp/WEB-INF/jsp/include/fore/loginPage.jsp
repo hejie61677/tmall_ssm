@@ -8,7 +8,7 @@
         </c:if>
 
         $("form.loginForm").submit(function() {
-            if(0 == $("#name").val().length||0 == $("#password").val().length) {
+            if(0 === $("#name").val().length || 0 === $("#password").val().length) {
                 $("span.errorMessage").html("请输入账号密码");
                 $("div.loginErrorMessageDiv").show();
                 return false;

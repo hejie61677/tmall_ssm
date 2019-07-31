@@ -3,6 +3,7 @@ package com.hejie.tmall_ssm.service.impl;
 import com.hejie.tmall_ssm.mapper.UserMapper;
 import com.hejie.tmall_ssm.pojo.User;
 import com.hejie.tmall_ssm.pojo.UserExample;
+import com.hejie.tmall_ssm.pojo.UserExpand;
 import com.hejie.tmall_ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User get(int id) {
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public UserExpand getE(int id) {
+        UserExpand userExpand = new UserExpand();
+        userExpand.setUser(userMapper.selectByPrimaryKey(id));
+
+        return userExpand;
     }
 
     @Override

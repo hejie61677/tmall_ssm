@@ -5,6 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+  * @Program: tamll_ssm
+  * @Description: 测试数据库连接
+  * @Author: hejie
+  * @Create: 2019/7/29
+  */
 public class TestTmall {
 
     public static void main(String args[]) {

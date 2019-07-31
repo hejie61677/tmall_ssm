@@ -12,14 +12,19 @@ import java.util.List;
  */
 public class OrderExpand extends Order {
 
+    //订单项列表
     private List<OrderItem> orderItems;
 
+    //订单项拓展列表
     private List<OrderItemExpand> orderItemExpands;
 
+    //对应用户
     private User user;
 
+    //订单总金额
     private float total;
 
+    //订单总数量
     private int totalNumber;
 
 

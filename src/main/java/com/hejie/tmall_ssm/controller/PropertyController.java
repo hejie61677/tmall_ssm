@@ -41,9 +41,10 @@ public class PropertyController {
         int total = (int) new PageInfo<>(properties).getTotal();
         page.setTotal(total);
         page.setParam("&cid=" + category.getId());
-        model.addAttribute("c", category);
-        model.addAttribute("ps", properties);
+        model.addAttribute("c", category);   //类别
+        model.addAttribute("ps", properties);   //属性
         model.addAttribute("page", page);
+
         return "admin/listProperty";
     }
 
@@ -55,6 +56,7 @@ public class PropertyController {
     @RequestMapping("admin_property_add")
     public String add(Property property){
         propertyService.add(property);
+
         return "redirect:/admin_property_list?cid=" + property.getCid();
     }
 
@@ -67,6 +69,7 @@ public class PropertyController {
     public String delete(int id) {
         Property property = propertyService.get(id);
         propertyService.delete(id);
+
         return "redirect:/admin_property_list?cid=" + property.getCid();
     }
 
@@ -81,6 +84,7 @@ public class PropertyController {
         Category category = categoryService.get(propertyExpand.getCid());
         propertyExpand.setCategory(category);
         model.addAttribute("p", propertyExpand);
+
         return "admin/editProperty";
     }
 
@@ -92,6 +96,7 @@ public class PropertyController {
     @RequestMapping("admin_property_update")
     public String update(Property property) {
         propertyService.update(property);
+
         return "redirect:/admin_property_list?cid=" + property.getCid();
     }
 

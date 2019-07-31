@@ -3,8 +3,10 @@ package com.hejie.tmall_ssm.service.impl;
 import com.hejie.tmall_ssm.mapper.CategoryMapper;
 import com.hejie.tmall_ssm.mapper.ProductMapper;
 import com.hejie.tmall_ssm.pojo.*;
+import com.hejie.tmall_ssm.service.OrderItemService;
 import com.hejie.tmall_ssm.service.ProductImageService;
 import com.hejie.tmall_ssm.service.ProductService;
+import com.hejie.tmall_ssm.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductImageService productImageService;
+
+    @Autowired
+    OrderItemService orderItemService;
+
+    @Autowired
+    ReviewService reviewService;
 
     @Override
     public List<Product> list(int cid) {
@@ -107,6 +115,7 @@ public class ProductServiceImpl implements ProductService {
 
         for (CategoryExpand categoryExpand : categoryExpands) {
             List<ProductExpand> products = categoryExpand.getProducts();
+            setFirstProductImage(products);
             List<List<ProductExpand>> productsByRow = new ArrayList<>();
 
             for (int i = 0; i < products.size(); i += productNumberEachRow) {
@@ -117,6 +126,22 @@ public class ProductServiceImpl implements ProductService {
             }
 
             categoryExpand.setProductsByRow(productsByRow);
+        }
+    }
+
+    @Override
+    public void setSaleAndReview(ProductExpand productExpand) {
+        int sales = orderItemService.getSales(productExpand.getId());
+        int reviews = reviewService.getCount(productExpand.getId());
+
+        productExpand.setSales(sales);
+        productExpand.setReviews(reviews);
+    }
+
+    @Override
+    public void setSalesAndReviews(List<ProductExpand> productExpands) {
+        for (ProductExpand productExpand : productExpands) {
+            setSaleAndReview(productExpand);
         }
     }
 

@@ -8,6 +8,7 @@ package com.hejie.tmall_ssm.pojo;
  */
 public class PropertyExpand extends Property {
 
+    //分类
     private Category category;
 
     public Category getCategory() {

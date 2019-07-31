@@ -21,9 +21,9 @@
                 num = "0";
             }
 
-            sign = (num == (num = Math.abs(num)));
+            let sign = (num === (num = Math.abs(num)));
             num = Math.floor(num * 100 + 0.50000000001);
-            cents = num % 100;
+            let cents = num % 100;
             num = Math.floor(num / 100).toString();
 
             if (cents < 10) {
@@ -40,7 +40,7 @@
         function checkEmpty(id, name) {
             let value = $("#" + id).val();
 
-            if (value.length == 0) {
+            if (value.length === 0) {
                 alert(name + "不能为空");
                 $("#" + id)[0].focus();
                 return false;

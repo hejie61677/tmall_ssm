@@ -19,7 +19,7 @@
                 page,
                 {"value":value, "id":pvid},
                 function (result) {
-                    if("success" == result) {
+                    if("success" === result) {
                         parentSpan.css("border", "1px solid green");
                     } else {
                         parentSpan.css("border", "1px soild red");

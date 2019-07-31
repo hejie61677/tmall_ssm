@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 
 <a href="${contextPath}">
-    <img src="img/site/log.gif" class="logo" id="log">
+    <img src="img/site/logo.gif" class="logo" id="log">
 </a>
 
 <form action="foresearch" method="post">

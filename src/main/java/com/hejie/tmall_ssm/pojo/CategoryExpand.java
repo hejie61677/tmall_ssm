@@ -10,8 +10,10 @@ import java.util.List;
  */
 public class CategoryExpand extends Category {
 
+    //产品集合(全部)
     private List<ProductExpand> products;
 
+    //产品集合(根据行数获取)
     private List<List<ProductExpand>> productsByRow;
 
     public void setCategory(Category category) {

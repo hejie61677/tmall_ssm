@@ -8,6 +8,7 @@ package com.hejie.tmall_ssm.pojo;
  */
 public class PropertyValueExpand extends PropertyValue {
 
+    //属性
     private Property property;
 
     public Property getProperty() {

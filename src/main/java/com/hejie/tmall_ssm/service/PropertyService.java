@@ -13,16 +13,22 @@ import java.util.List;
  */
 public interface PropertyService {
 
+    //获取属性列表
     List<Property> list(int cid);
 
+    //新增属性
     void add(Property property);
 
+    //删除属性
     void delete(int id);
 
+    //获取属性
     Property get(int id);
 
+    //获取属性拓展
     PropertyExpand getPe(int id);
 
+    //修改属性
     void update(Property property);
 
 }

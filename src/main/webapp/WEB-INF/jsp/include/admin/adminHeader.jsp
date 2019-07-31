@@ -14,11 +14,11 @@
 	
 <script>
 	function checkEmpty(id, name) {
-		var value = $("#"+id).val();
+		let value = $("#" + id).val();
 
-		if (value.length == 0) {
+		if (value.length === 0) {
 			alert(name+ "不能为空");
-			$("#"+id)[0].focus();
+			$("#" + id)[0].focus();
 			return false;
 		}
 
@@ -26,17 +26,17 @@
 	}
 
 	function checkNumber(id, name) {
-		var value = $("#"+id).val();
+		let value = $("#" + id).val();
 
-		if (value.length == 0) {
-			alert(name+ "不能为空");
-			$("#"+id)[0].focus();
+		if (value.length === 0) {
+			alert(name + "不能为空");
+			$("#" + id)[0].focus();
 			return false;
 		}
 
 		if (isNaN(value)) {
-			alert(name+ "必须是数字");
-			$("#"+id)[0].focus();
+			alert(name + "必须是数字");
+			$("#" + id)[0].focus();
 			return false;
 		}
 
@@ -44,17 +44,17 @@
 	}
 
 	function checkInt(id, name) {
-		var value = $("#"+id).val();
+		let value = $("#" + id).val();
 
-		if (value.length == 0) {
-			alert(name+ "不能为空");
-			$("#"+id)[0].focus();
+		if (value.length === 0) {
+			alert(name + "不能为空");
+			$("#" + id)[0].focus();
 			return false;
 		}
 
-		if (parseInt(value) != value) {
-			alert(name+ "必须是整数");
-			$("#"+id)[0].focus();
+		if (parseInt(value) !== value) {
+			alert(name + "必须是整数");
+			$("#" + id)[0].focus();
 			return false;
 		}
 
@@ -63,16 +63,12 @@
 
 	$(function() {
 		$("a").click(function() {
-			var deleteLink = $(this).attr("deleteLink");
+			let deleteLink = $(this).attr("deleteLink");
 			console.log(deleteLink);
 
 			if ("true" == deleteLink) {
-				var confirmDelete = confirm("确认要删除");
-				if (confirmDelete) {
-					return true;
-				} else {
-					return false;
-				}
+				let confirmDelete = confirm("确认要删除");
+				return confirmDelete;
 			}
 		});
 	})

@@ -24,6 +24,11 @@ import javax.imageio.ImageIO;
   */
 public class ImageUtil {
 
+    /**
+      * @Description: 格式转化为jpg
+      * @Author: hejie
+      * @Date: 2019/6/18
+      */
     public static BufferedImage change2jpg(File f) {
         try {
             Image i = Toolkit.getDefaultToolkit().createImage(f.getAbsolutePath());
@@ -44,6 +49,11 @@ public class ImageUtil {
         }
     }
 
+    /**
+     * @Description: 调整图片大小,复制到其他路径
+     * @Author: hejie
+     * @Date: 2019/6/18
+     */
     public static void resizeImage(File srcFile, int width, int height, File destFile) {
         try {
             if (!destFile.getParentFile().exists()) {
@@ -59,6 +69,11 @@ public class ImageUtil {
         }
     }
 
+    /**
+     * @Description: 调整图片大小,复制到其他路径
+     * @Author: hejie
+     * @Date: 2019/6/18
+     */
     public static Image resizeImage(Image srcImage, int width, int height) {
 
         try {

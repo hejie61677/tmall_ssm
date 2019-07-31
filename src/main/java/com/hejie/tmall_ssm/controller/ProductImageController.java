@@ -46,9 +46,9 @@ public class ProductImageController {
         List<ProductImage> productImagesSingle = productImageService.list(pid, ProductImageService.type_single);
         List<ProductImage> productImagesDetail = productImageService.list(pid, ProductImageService.type_detail);
 
-        model.addAttribute("p", productExpand);
-        model.addAttribute("pisSingle", productImagesSingle);
-        model.addAttribute("pisDetail", productImagesDetail);
+        model.addAttribute("p", productExpand);   //产品拓展
+        model.addAttribute("pisSingle", productImagesSingle);   //产品单个图片
+        model.addAttribute("pisDetail", productImagesDetail);   //产品详情图片
 
         return "admin/listProductImage";
     }
@@ -92,6 +92,7 @@ public class ProductImageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return "redirect:/admin_productImage_list?pid=" + productImage.getPid();
     }
 

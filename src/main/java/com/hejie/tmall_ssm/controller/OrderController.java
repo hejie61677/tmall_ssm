@@ -50,6 +50,11 @@ public class OrderController {
         return "admin/listOrder";
     }
 
+    /**
+     * @Description: 商品发货
+     * @Author: hejie
+     * @date: 2019/7/18
+     */
     @RequestMapping("admin_order_delivery")
     public String delivery(Order order) {
         order.setDelivery_date(new Date());

@@ -5,7 +5,7 @@
         $("div.productsAsideCategorys div.row a").each(function() {
             let v = Math.round(Math.random() * 6);
 
-            if(v == 1){
+            if(v === 1){
                 $(this).css("color", "#87CEFA");
             }
         });
@@ -18,9 +18,9 @@
         <c:forEach items="${c.productsByRow}" var="ps">
             <div class="row show1">
                 <c:forEach items="${ps}" var="p">
-                    <c:if test="${!empty p.subTitle}">
+                    <c:if test="${!empty p.sub_title}">
                         <a href="foreproduct?pid=${p.id}">
-                            <c:forEach items="${fn:split(p.subTitle, ' ')}" var="title" varStatus="st">
+                            <c:forEach items="${fn:split(p.sub_title, ' ')}" var="title" varStatus="st">
                                 <c:if test="${st.index == 0}">
                                     ${title}
                                 </c:if>

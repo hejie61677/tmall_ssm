@@ -14,16 +14,22 @@ import java.util.List;
  */
 public interface PropertyValueService {
 
+    //根据产品初始化属性值
     void init(Product product);
 
+    //获取属性值列表
     List<PropertyValue> list(int pid);
 
+    //获取属性值拓展列表
     List<PropertyValueExpand> listE(int pid);
 
+    //获取单个属性值
     PropertyValue get(int ptid, int pid);
 
+    //获取单个拓展属性值
     PropertyValueExpand getE(int ptid, int pid);
 
+    //修改属性值
     void update(PropertyValue propertyValue);
 
 }

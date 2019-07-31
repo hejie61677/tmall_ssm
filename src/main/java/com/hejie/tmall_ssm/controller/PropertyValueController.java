@@ -41,8 +41,8 @@ public class PropertyValueController {
         Product product = productService.get(pid);
         propertyValueService.init(product);
         List<PropertyValueExpand> propertyValues = propertyValueService.listE(product.getId());
-        model.addAttribute("p", productExpand);
-        model.addAttribute("pvs", propertyValues);
+        model.addAttribute("p", productExpand);   //产品
+        model.addAttribute("pvs", propertyValues);   //属性值
 
         return "admin/editPropertyValue";
     }

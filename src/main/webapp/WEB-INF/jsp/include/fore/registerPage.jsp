@@ -9,25 +9,25 @@
 
         $(".registerForm").submit(function() {
 
-            if(0 == $("#name").val().length) {
+            if(0 === $("#name").val().length) {
                 $("span.errorMessage").html("请输入用户名");
                 $("div.registerErrorMessageDiv").css("visibility", "visible");
                 return false;
             }
 
-            if(0 == $("#password").val().length) {
+            if(0 === $("#password").val().length) {
                 $("span.errorMessage").html("请输入密码");
                 $("div.registerErrorMessageDiv").css("visibility", "visible");
                 return false;
             }
 
-            if(0 == $("#repeatpassword").val().length) {
+            if(0 === $("#repeatpassword").val().length) {
                 $("span.errorMessage").html("请输入重复密码");
                 $("div.registerErrorMessageDiv").css("visibility", "visible");
                 return false;
             }
 
-            if($("#password").val() != $("#repeatpassword").val()) {
+            if($("#password").val() !== $("#repeatpassword").val()) {
                 $("span.errorMessage").html("两次输入密码不一致");
                 $("div.registerErrorMessageDiv").css("visibility", "visible");
                 return false;

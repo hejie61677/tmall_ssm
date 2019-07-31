@@ -1,7 +1,6 @@
 package com.hejie.tmall_ssm.controller;
 
-import com.hejie.tmall_ssm.pojo.CategoryExpand;
-import com.hejie.tmall_ssm.pojo.User;
+import com.hejie.tmall_ssm.pojo.*;
 import com.hejie.tmall_ssm.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,9 +37,14 @@ public class ForeController {
     @Autowired
     PropertyValueService propertyValueService;
 
-    @Autowired OrderService orderService;
+    @Autowired
+    OrderService orderService;
 
-    @Autowired OrderItemService orderItemService;
+    @Autowired
+    OrderItemService orderItemService;
+
+    @Autowired
+    ReviewService reviewService;
 
     /**
       * @Description: 前端主页面
@@ -52,7 +56,8 @@ public class ForeController {
         List<CategoryExpand> categoryExpands = categoryService.listE();
         productService.fill(categoryExpands);
         productService.fillByRow(categoryExpands);
-        model.addAttribute("cs", categoryExpands);
+        model.addAttribute("cs", categoryExpands);   //分类拓展类集合
+
         return "fore/home";
     }
 
@@ -99,4 +104,39 @@ public class ForeController {
         }
     }
 
+    /**
+      * @Description: 用户退出
+      * @Author: hejie
+      * @Date: 2019/7/29
+      */
+    @RequestMapping("forelogout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("user");
+
+        return "redirect:forehome";
+    }
+
+    /**
+     * @Description: 跳转产品页面
+     * @Author: hejie
+     * @Date: 2019/7/31
+     */
+    @RequestMapping("foreproduct")
+    public String product( int pid, Model model) {
+        ProductExpand productExpand = productService.getPe(pid);
+
+        List<ProductImage> productSingleImages = productImageService.list(productExpand.getId(), ProductImageService.type_single);
+        List<ProductImage> productDetailImages = productImageService.list(productExpand.getId(), ProductImageService.type_detail);
+        productExpand.setProductSingleImages(productSingleImages);
+        productExpand.setProductDetailImages(productDetailImages);
+
+        List<PropertyValueExpand> propertyValueExpands = propertyValueService.listE(productExpand.getId());
+        List<ReviewExpand> reviewExpands = reviewService.listE(productExpand.getId());
+        productService.setSaleAndReview(productExpand);
+        model.addAttribute("reviews", reviewExpands);   //评论
+        model.addAttribute("p", productExpand);   //产品
+        model.addAttribute("pvs", propertyValueExpands);   //属性值
+
+        return "fore/product";
+    }
 }

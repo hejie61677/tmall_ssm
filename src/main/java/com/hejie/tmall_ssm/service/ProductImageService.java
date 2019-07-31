@@ -18,14 +18,19 @@ public interface ProductImageService {
     //详情图片
     String type_detail = "type_detail";
 
+    //新增
     void add(ProductImage productImage);
 
+    //删除
     void delete(int id);
 
+    //修改
     void update(ProductImage productImage);
 
+    //获取产品图片
     ProductImage get(int id);
 
+    //获取产品图片列表
     List<ProductImage> list(int pid, String type);
 
 }

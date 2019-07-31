@@ -1,6 +1,6 @@
 package com.hejie.tmall_ssm.pojo;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 /**
@@ -11,9 +11,23 @@ import java.util.List;
  */
 public class ProductExpand extends Product {
 
+    //产品所属分类信息
     private Category category;
 
+    //产品主图片
     private ProductImage firstProductImage;
+
+    //单个产品图片集合
+    private List<ProductImage> productSingleImages;
+
+    //详情产品图片集合
+    private List<ProductImage> productDetailImages;
+
+    //销量
+    private int sales;
+
+    //累计评价
+    private int reviews;
 
     public Category getCategory() {
         return category;
@@ -29,6 +43,38 @@ public class ProductExpand extends Product {
 
     public void setFirstProductImage(ProductImage firstProductImage) {
         this.firstProductImage = firstProductImage;
+    }
+
+    public List<ProductImage> getProductSingleImages() {
+        return productSingleImages;
+    }
+
+    public void setProductSingleImages(List<ProductImage> productSingleImages) {
+        this.productSingleImages = productSingleImages;
+    }
+
+    public List<ProductImage> getProductDetailImages() {
+        return productDetailImages;
+    }
+
+    public void setProductDetailImages(List<ProductImage> productDetailImages) {
+        this.productDetailImages = productDetailImages;
+    }
+
+    public int getSales() {
+        return sales;
+    }
+
+    public void setSales(int sales) {
+        this.sales = sales;
+    }
+
+    public int getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(int reviews) {
+        this.reviews = reviews;
     }
 
     public void setProduct(Product product) {

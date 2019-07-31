@@ -8,8 +8,10 @@ package com.hejie.tmall_ssm.pojo;
  */
 public class OrderItemExpand extends OrderItem {
 
+    //产品
     private Product product;
 
+    //产品拓展
     private ProductExpand productExpand;
 
     public Product getProduct() {

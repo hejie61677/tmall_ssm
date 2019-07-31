@@ -43,8 +43,9 @@ public class CategoryController {
         List<Category> categories = categoryService.list();
         int total = (int) new PageInfo<>(categories).getTotal();
         page.setTotal(total);
-        model.addAttribute("cs", categories);
+        model.addAttribute("cs", categories);  //分类集合
         model.addAttribute("page", page);
+
         return "admin/listCategory";
     }
 
@@ -55,12 +56,17 @@ public class CategoryController {
      */
     @RequestMapping("admin_category_add")
     public String add(Category category, HttpSession session, UploadedImageFile uploadedImageFile) throws IOException {
+        //插入表数据
         categoryService.add(category);
+
+        //图片新增
         File imageFolder = new File(session.getServletContext().getRealPath("img/category"));
         File file = new File(imageFolder, category.getId() + ".jpg");
+
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
         }
+
         uploadedImageFile.getImage().transferTo(file);
         BufferedImage img = ImageUtil.change2jpg(file);
         ImageIO.write(img, "jpg", file);
@@ -74,8 +80,10 @@ public class CategoryController {
      */
     @RequestMapping("admin_category_delete")
     public String delete(int id, HttpSession session) {
+        //删除表数据
         categoryService.delete(id);
 
+        //删除图片
         File imageFolder = new File(session.getServletContext().getRealPath("img/category"));
         File file = new File(imageFolder, id + ".jpg");
         file.delete();
@@ -92,6 +100,7 @@ public class CategoryController {
     public String edit(int id, Model model) {
         Category category = categoryService.get(id);
         model.addAttribute("c", category);
+
         return "admin/editCategory";
     }
 
@@ -102,8 +111,12 @@ public class CategoryController {
       */
     @RequestMapping("admin_category_update")
     public String update(Category category, HttpSession session, UploadedImageFile uploadedImageFile) throws IOException {
+        //更新表数据
         categoryService.update(category);
+
+        //更新分类图片
         MultipartFile image = uploadedImageFile.getImage();
+
         if (null != image && !image.isEmpty()) {
             File imageFolder = new File(session.getServletContext().getRealPath("img/category"));
             File file = new File(imageFolder, category.getId() + ".jpg");
@@ -111,6 +124,7 @@ public class CategoryController {
             BufferedImage img = ImageUtil.change2jpg(file);
             ImageIO.write(img, "jpg", file);
         }
+
         return "redirect:/admin_category_list";
     }
 

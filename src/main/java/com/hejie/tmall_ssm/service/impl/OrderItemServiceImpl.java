@@ -111,4 +111,18 @@ public class OrderItemServiceImpl implements OrderItemService {
         orderItemExpand.setProductExpand(productExpand);
     }
 
+    @Override
+    public int getSales(int pid) {
+        OrderItemExample orderItemExample = new OrderItemExample();
+        orderItemExample.createCriteria().andPidEqualTo(pid);
+        List<OrderItem> orderItems = orderItemMapper.selectByExample(orderItemExample);
+
+        int count = 0;
+
+        for (OrderItem orderItem : orderItems) {
+            count += orderItem.getNumber();
+        }
+
+        return count;
+    }
 }

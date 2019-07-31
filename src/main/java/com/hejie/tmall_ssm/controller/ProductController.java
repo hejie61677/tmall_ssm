@@ -43,9 +43,10 @@ public class ProductController {
         int total = (int) new PageInfo<>(products).getTotal();
         page.setTotal(total);
         page.setParam("&cid=" + category.getId());
-        model.addAttribute("c", category);
-        model.addAttribute("ps", products);
-        model.addAttribute("page", page);
+        model.addAttribute("c", category);   //类别
+        model.addAttribute("ps", products);   //产品集合
+        model.addAttribute("page", page);   //分页
+
         return "admin/listProduct";
     }
 
@@ -58,6 +59,7 @@ public class ProductController {
     public String add(Product product){
         product.setCreate_date(new Date());
         productService.add(product);
+
         return "redirect:/admin_product_list?cid=" + product.getCid();
     }
 
@@ -70,6 +72,7 @@ public class ProductController {
     public String delete(int id) {
         Product product = productService.get(id);
         productService.delete(id);
+
         return "redirect:/admin_product_list?cid=" + product.getCid();
     }
 
@@ -83,7 +86,8 @@ public class ProductController {
         ProductExpand productExpand = productService.getPe(id);
         Category category = categoryService.get(productExpand.getCid());
         productExpand.setCategory(category);
-        model.addAttribute("p", productExpand);
+        model.addAttribute("p", productExpand);   //产品拓展
+
         return "admin/editProduct";
     }
 
@@ -95,6 +99,7 @@ public class ProductController {
     @RequestMapping("admin_product_update")
     public String update(Product product) {
         productService.update(product);
+
         return "redirect:/admin_product_list?cid=" + product.getCid();
     }
 

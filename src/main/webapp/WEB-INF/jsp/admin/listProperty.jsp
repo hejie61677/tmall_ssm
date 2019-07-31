@@ -7,11 +7,7 @@
 <script>
     $(function(){
         $("#addForm").submit(function(){
-            if(checkEmpty("name","属性名称")) {
-                return true;
-            } else {
-                return false;
-            }
+            return checkEmpty("name", "属性名称");
         });
     })
 </script>

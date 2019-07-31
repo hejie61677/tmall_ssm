@@ -25,6 +25,11 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    /**
+      * @Description: 用户列表查询
+      * @Author: hejie
+      * @Date: 2019/7/18
+      */
     @RequestMapping("admin_user_list")
     public String list(Model model, Page page) {
 
@@ -34,6 +39,7 @@ public class UserController {
         page.setTotal(total);
         model.addAttribute("us", users);
         model.addAttribute("page", page);
+
         return  "admin/listUser";
     }
 
