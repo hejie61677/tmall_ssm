@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
@@ -139,4 +140,30 @@ public class ForeController {
 
         return "fore/product";
     }
+
+    @RequestMapping("forelogincheck")
+    @ResponseBody
+    public String logincheck(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            return "success";
+        } else {
+            return "failure";
+        }
+    }
+
+    @RequestMapping("foreloginajax")
+    @ResponseBody
+    public String loginajax(@RequestParam("name") String name, @RequestParam("password") String password, HttpSession session) {
+        name = HtmlUtils.htmlEscape(name);
+        User user = userService.get(name, password);
+
+        if (user != null) {
+            session.setAttribute("user", user);
+            return "success";
+        } else {
+            return "failure";
+        }
+    }
+
 }

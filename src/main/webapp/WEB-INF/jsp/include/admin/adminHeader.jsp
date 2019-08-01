@@ -11,6 +11,7 @@
 	<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
 	<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
 	<link href="css/back/style.css" rel="stylesheet">
+	<link href="admin/favicon.ico" rel="icon">
 	
 <script>
 	function checkEmpty(id, name) {

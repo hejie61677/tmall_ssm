@@ -44,7 +44,7 @@
         });
 
         $(".addCartLink").click(function() {
-            const page = "forecheckLogin";
+            const page = "forelogincheck";
             $.get(
                 page,
                 function(result) {
@@ -75,7 +75,7 @@
             return false;
         });
         $(".buyLink").click(function() {
-            const page = "forecheckLogin";
+            const page = "forelogincheck";
             $.get(
                 page,
                 function(result) {
@@ -100,7 +100,7 @@
                 return false;
             }
 
-            const page = "foreloginAjax";
+            const page = "foreloginajax";
             $.get(
                 page,
                 {"name":name, "password":password},

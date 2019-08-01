@@ -12,6 +12,7 @@
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
     <link href="css/fore/style.css" rel="stylesheet">
+    <link href="admin/favicon.ico" rel="icon">
 
     <script>
         function formatMoney(num) {
