@@ -27,6 +27,9 @@ public interface CategoryService{
     //获取单个分类
     Category get(int id);
 
+    //获取单个分类拓展
+    CategoryExpand getE(int id);
+
     //更新分类
     void update(Category category);
 }

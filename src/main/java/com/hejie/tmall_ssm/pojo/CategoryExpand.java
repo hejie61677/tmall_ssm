@@ -10,6 +10,13 @@ import java.util.List;
  */
 public class CategoryExpand extends Category {
 
+    /**
+     *  20190802新增 构造函数，初始化类型对象
+     */
+    public CategoryExpand(Category category) {
+        setCategory(category);
+    }
+
     //产品集合(全部)
     private List<ProductExpand> products;
 

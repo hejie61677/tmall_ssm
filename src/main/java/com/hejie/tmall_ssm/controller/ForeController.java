@@ -1,5 +1,6 @@
 package com.hejie.tmall_ssm.controller;
 
+import com.hejie.tmall_ssm.comparator.*;
 import com.hejie.tmall_ssm.pojo.*;
 import com.hejie.tmall_ssm.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -141,6 +143,11 @@ public class ForeController {
         return "fore/product";
     }
 
+    /**
+     * @Description: 登陆用户检查
+     * @Author: hejie
+     * @Date: 2019/8/2
+     */
     @RequestMapping("forelogincheck")
     @ResponseBody
     public String logincheck(HttpSession session) {
@@ -152,6 +159,11 @@ public class ForeController {
         }
     }
 
+    /**
+     * @Description: 登陆用户密码校验
+     * @Author: hejie
+     * @Date: 2019/8/2
+     */
     @RequestMapping("foreloginajax")
     @ResponseBody
     public String loginajax(@RequestParam("name") String name, @RequestParam("password") String password, HttpSession session) {
@@ -164,6 +176,42 @@ public class ForeController {
         } else {
             return "failure";
         }
+    }
+
+    /**
+     * @Description: 分类页面
+     * @Author: hejie
+     * @Date: 2019/8/2
+     */
+    @RequestMapping("forecategory")
+    public String category (int cid, String sort, Model model) {
+        CategoryExpand categoryExpand = categoryService.getE(cid);
+        productService.fill(categoryExpand);
+        productService.setSalesAndReviews(categoryExpand.getProducts());
+
+        if (sort != null) {
+            switch (sort) {
+                case "review":
+                    Collections.sort(categoryExpand.getProducts(), new ProductReviewComparator());
+                    break;
+                case "date":
+                    Collections.sort(categoryExpand.getProducts(), new ProductDateComparator());
+                    break;
+                case "sales":
+                    Collections.sort(categoryExpand.getProducts(), new ProductSalesComparator());
+                    break;
+                case "price":
+                    Collections.sort(categoryExpand.getProducts(), new ProductPriceComparator());
+                    break;
+                case "all":
+                    Collections.sort(categoryExpand.getProducts(), new ProductAllComparator());
+                    break;
+            }
+        }
+
+        model.addAttribute("c", categoryExpand);
+
+        return "fore/category";
     }
 
 }

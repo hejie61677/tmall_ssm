@@ -36,8 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryExpand categoryExpand;
 
         for (Category category : categories) {
-            categoryExpand = new CategoryExpand();
-            categoryExpand.setCategory(category);
+            categoryExpand = new CategoryExpand(category);
             categoryExpands.add(categoryExpand);
         }
 
@@ -57,6 +56,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category get(int id) {
         return categoryMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public CategoryExpand getE(int id) {
+        return new CategoryExpand(categoryMapper.selectByPrimaryKey(id));
     }
 
     @Override
