@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @program: tmall_ssm
- * @description: 服务端跳转管理类
- * @author: hejie
- * @create: 2019-07-25 10:43
+ * @Program: tmall_ssm
+ * @Description: 服务端跳转管理类
+ * @Author: hejie
+ * @Create: 2019-07-25 10:43
  */
 @Controller
 @RequestMapping("")

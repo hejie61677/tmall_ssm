@@ -17,10 +17,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: 订单管理前端控制器
- * @author: hejie
- * @create: 2019-07-18 17:04
+ * @Program: tmall_ssm
+ * @Description: 订单管理前端控制器
+ * @Author: hejie
+ * @Create: 2019-07-18 17:04
  */
 @Controller
 @RequestMapping("")

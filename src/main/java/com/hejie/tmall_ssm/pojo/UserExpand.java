@@ -1,10 +1,10 @@
 package com.hejie.tmall_ssm.pojo;
 
 /**
- * @program: tmall_ssm
- * @description: User拓展类
- * @author: hejie
- * @create: 2019-07-30 16:20
+ * @Program: tmall_ssm
+ * @Description: User拓展类
+ * @Author: hejie
+ * @Create: 2019-07-30 16:20
  */
 public class UserExpand extends User {
 

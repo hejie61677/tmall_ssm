@@ -5,10 +5,10 @@ import com.hejie.tmall_ssm.pojo.ProductExpand;
 import java.util.Comparator;
 
 /**
- * @program: tmall_ssm
- * @description: 综合比较器（将"销量×评价"高的排前面）
- * @author: hejie
- * @create: 2019-08-01 16:36
+ * @Program: tmall_ssm
+ * @Description: 综合比较器（将"销量×评价"高的排前面）
+ * @Author: hejie
+ * @Create: 2019-08-01 16:36
  */
 public class ProductAllComparator implements Comparator<ProductExpand> {
 

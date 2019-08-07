@@ -3,10 +3,10 @@ package com.hejie.tmall_ssm.pojo;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: Category拓展类
- * @author: hejie
- * @create: 2019-07-19 16:21
+ * @Program: tmall_ssm
+ * @Description: Category拓展类
+ * @Author: hejie
+ * @Create: 2019-07-19 16:21
  */
 public class CategoryExpand extends Category {
 

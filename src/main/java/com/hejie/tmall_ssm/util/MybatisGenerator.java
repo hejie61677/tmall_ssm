@@ -12,10 +12,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: 逆向工程生产pojo,mapper,xml
- * @author: hejie
- * @create: 2019-06-25 15:25
+ * @Program: tmall_ssm
+ * @Description: 逆向工程生产pojo,mapper,xml
+ * @Author: hejie
+ * @Create: 2019-06-25 15:25
  */
 public class MybatisGenerator {
 

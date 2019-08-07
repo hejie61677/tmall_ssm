@@ -108,8 +108,8 @@ div.categoryWithCarousel div.headbar {
 }
 
 div.carousel-of-product {
-	width: 1024px;
-	height: 510px;
+	width: 1180px;
+	height: 500px;
 	margin:0px auto;
 }
 div.carousel-inner div.item img{
@@ -2254,7 +2254,7 @@ a.productLink {
 }
 
 img.carouselImage {
-	height: 510px !important;
+	height: 500px !important;
 }
 
 div.noMatch {

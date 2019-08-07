@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: ReviewService接口实现类
- * @author: hejie
- * @create: 2019-07-30 16:39
+ * @Program: tmall_ssm
+ * @Description: ReviewService接口实现类
+ * @Author: hejie
+ * @Create: 2019-07-30 16:39
  */
 @Service
 public class ReviewServiceImpl implements ReviewService {

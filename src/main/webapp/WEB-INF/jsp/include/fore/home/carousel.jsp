@@ -7,6 +7,8 @@
         <li data-target="#carousel-of-product" data-slide-to="1"></li>
         <li data-target="#carousel-of-product" data-slide-to="2"></li>
         <li data-target="#carousel-of-product" data-slide-to="3"></li>
+        <li data-target="#carousel-of-product" data-slide-to="4"></li>
+        <li data-target="#carousel-of-product" data-slide-to="5"></li>
     </ol>
 
     <!-- Wrapper for slides -->
@@ -15,13 +17,19 @@
             <img class="carousel carouselImage" src="img/lunbo/1.jpg" >
         </div>
         <div class="item">
-            <img  class="carouselImage" src="img/lunbo/2.jpg" >
+            <img class="carouselImage" src="img/lunbo/2.jpg" >
         </div>
         <div class="item">
             <img  class="carouselImage" src="img/lunbo/3.jpg" >
         </div>
         <div class="item">
             <img  class="carouselImage" src="img/lunbo/4.jpg" >
+        </div>
+        <div class="item">
+            <img  class="carouselImage" src="img/lunbo/5.jpg" >
+        </div>
+        <div class="item">
+            <img  class="carouselImage" src="img/lunbo/6.jpg" >
         </div>
     </div>
 

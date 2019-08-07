@@ -12,10 +12,10 @@ import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: User接口实现类
- * @author: hejie
- * @create: 2019-07-18 09:10
+ * @Program: tmall_ssm
+ * @Description: User接口实现类
+ * @Author: hejie
+ * @Create: 2019-07-18 09:10
  */
 @Service
 public class UserServiceImpl implements UserService {

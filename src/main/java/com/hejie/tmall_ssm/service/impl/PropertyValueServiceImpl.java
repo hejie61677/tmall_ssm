@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description:
- * @author: hejie
- * @create: 2019-07-12 16:08
+ * @Program: tmall_ssm
+ * @Description:
+ * @Author: hejie
+ * @Create: 2019-07-12 16:08
  */
 @Service
 public class PropertyValueServiceImpl implements PropertyValueService {

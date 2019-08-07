@@ -1,5 +1,6 @@
 package com.hejie.tmall_ssm.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.hejie.tmall_ssm.comparator.*;
 import com.hejie.tmall_ssm.pojo.*;
 import com.hejie.tmall_ssm.service.*;
@@ -16,10 +17,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: 前端相关管理
- * @author: hejie
- * @create: 2019-07-22 09:30
+ * @Program: tmall_ssm
+ * @Description: 前端相关管理
+ * @Author: hejie
+ * @Create: 2019-07-22 09:30
  */
 @Controller
 @RequestMapping("")
@@ -214,4 +215,18 @@ public class ForeController {
         return "fore/category";
     }
 
+    /**
+      * @Description: 页面搜索
+      * @Author: hejie
+      * @Date: 2019/8/2
+      */
+    @RequestMapping("foresearch")
+    public String search(String keyword, Model model) {
+        PageHelper.offsetPage(0, 20);
+        List<ProductExpand> productExpands = productService.search(keyword);
+        productService.setSalesAndReviews(productExpands);
+        model.addAttribute("ps", productExpands);
+
+        return "fore/searchResult";
+    }
 }

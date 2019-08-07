@@ -5,10 +5,10 @@ import com.hejie.tmall_ssm.pojo.ProductExpand;
 import java.util.Comparator;
 
 /**
- * @program: tmall_ssm
- * @description: 新品比较器（将创建日期晚的排前面）
- * @author: hejie
- * @create: 2019-08-01 17:14
+ * @Program: tmall_ssm
+ * @Description: 新品比较器（将创建日期晚的排前面）
+ * @Author: hejie
+ * @Create: 2019-08-01 17:14
  */
 public class ProductDateComparator implements Comparator<ProductExpand> {
 

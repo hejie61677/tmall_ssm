@@ -1,10 +1,10 @@
 package com.hejie.tmall_ssm.pojo;
 
 /**
- * @program: tmall_ssm
- * @description: Review拓展类
- * @author: hejie
- * @create: 2019-07-30 16:12
+ * @Program: tmall_ssm
+ * @Description: Review拓展类
+ * @Author: hejie
+ * @Create: 2019-07-30 16:12
  */
 public class ReviewExpand extends Review {
 

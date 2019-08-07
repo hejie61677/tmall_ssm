@@ -8,10 +8,10 @@ import net.sourceforge.tess4j.TesseractException;
 import java.io.File;
 
 /**
- * @program: tmall_ssm
- * @description: 杂项测试
- * @author: hejie
- * @create: 2019-07-29 08:35
+ * @Program: tmall_ssm
+ * @Description: 杂项测试
+ * @Author: hejie
+ * @Create: 2019-07-29 08:35
  */
 public class Test {
 

@@ -4,10 +4,10 @@ package com.hejie.tmall_ssm.pojo;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: Product类的拓展类
- * @author: hejie
- * @create: 2019-06-28
+ * @Program: tmall_ssm
+ * @Description: Product类的拓展类
+ * @Author: hejie
+ * @Create: 2019-06-28
  */
 public class ProductExpand extends Product {
 

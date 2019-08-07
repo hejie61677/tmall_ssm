@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: 用户管理前端控制器
- * @author: hejie
- * @create: 2019-07-18 10:01
+ * @Program: tmall_ssm
+ * @Description: 用户管理前端控制器
+ * @Author: hejie
+ * @Create: 2019-07-18 10:01
  */
 @Controller
 @RequestMapping("")

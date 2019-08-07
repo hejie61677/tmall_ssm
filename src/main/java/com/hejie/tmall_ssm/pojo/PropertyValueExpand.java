@@ -1,10 +1,10 @@
 package com.hejie.tmall_ssm.pojo;
 
 /**
- * @program: tmall_ssm
- * @description: PropertyValue拓展类
- * @author: hejie
- * @create: 2019-07-12 11:21
+ * @Program: tmall_ssm
+ * @Description: PropertyValue拓展类
+ * @Author: hejie
+ * @Create: 2019-07-12 11:21
  */
 public class PropertyValueExpand extends PropertyValue {
 

@@ -1,10 +1,10 @@
 package com.hejie.tmall_ssm.pojo;
 
 /**
- * @program: tmall_ssm
- * @description: OrderItem拓展类
- * @author: hejie
- * @create: 2019-07-18 10:34
+ * @Program: tmall_ssm
+ * @Description: OrderItem拓展类
+ * @Author: hejie
+ * @Create: 2019-07-18 10:34
  */
 public class OrderItemExpand extends OrderItem {
 

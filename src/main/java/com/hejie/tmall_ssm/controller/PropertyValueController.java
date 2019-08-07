@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: PropertyValue前端控制器
- * @author: hejie
- * @create: 2019-07-15 11:10
+ * @Program: tmall_ssm
+ * @Description: PropertyValue前端控制器
+ * @Author: hejie
+ * @Create: 2019-07-15 11:10
  */
 @Controller
 @RequestMapping("")

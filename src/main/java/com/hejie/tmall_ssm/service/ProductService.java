@@ -52,4 +52,8 @@ public interface ProductService {
 
     //设置销量和评论数量-多个
     void setSalesAndReviews(List<ProductExpand> productExpands);
+
+    //模糊查询
+    List<ProductExpand> search(String keyWord);
+
 }

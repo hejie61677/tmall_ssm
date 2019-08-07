@@ -5,10 +5,10 @@ import com.hejie.tmall_ssm.service.OrderService;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: Order拓展类
- * @author: hejie
- * @create: 2019-07-18 10:42
+ * @Program: tmall_ssm
+ * @Description: Order拓展类
+ * @Author: hejie
+ * @Create: 2019-07-18 10:42
  */
 public class OrderExpand extends Order {
 

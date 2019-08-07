@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @program: tmall_ssm
- * @description: OrderItem接口实现类
- * @author: hejie
- * @create: 2019-07-18 11:15
+ * @Program: tmall_ssm
+ * @Description: OrderItem接口实现类
+ * @Author: hejie
+ * @Create: 2019-07-18 11:15
  */
 @Service
 public class OrderItemServiceImpl implements OrderItemService {
