@@ -51,7 +51,7 @@
                     if ("success" === result) {
                         let pid = ${p.id};
                         let num = $(".productNumberSetting").val();
-                        const addCartpage = "foreaddCart";
+                        const addCartpage = "fore_addcart";
                         $.get(
                             addCartpage,
                             {"pid": pid, "num": num},

@@ -14,7 +14,6 @@ import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -194,19 +193,19 @@ public class ForeController {
         if (sort != null) {
             switch (sort) {
                 case "review":
-                    Collections.sort(categoryExpand.getProducts(), new ProductReviewComparator());
+                    categoryExpand.getProducts().sort(new ProductReviewComparator());
                     break;
                 case "date":
-                    Collections.sort(categoryExpand.getProducts(), new ProductDateComparator());
+                    categoryExpand.getProducts().sort(new ProductDateComparator());
                     break;
                 case "sales":
-                    Collections.sort(categoryExpand.getProducts(), new ProductSalesComparator());
+                    categoryExpand.getProducts().sort(new ProductSalesComparator());
                     break;
                 case "price":
-                    Collections.sort(categoryExpand.getProducts(), new ProductPriceComparator());
+                    categoryExpand.getProducts().sort(new ProductPriceComparator());
                     break;
                 case "all":
-                    Collections.sort(categoryExpand.getProducts(), new ProductAllComparator());
+                    categoryExpand.getProducts().sort(new ProductAllComparator());
                     break;
             }
         }
@@ -238,6 +237,53 @@ public class ForeController {
      */
     @RequestMapping("fore_buyone")
     public String buyone(int pid, int num, HttpSession session) {
+        int oiid = uOrAOrderItem(pid, num, session);
+
+        return "redirect:fore_buy?oiid=" + oiid;
+    }
+
+    /**
+     * @Description: 结算页面
+     * @Author: hejie
+     * @Date: 2019/8/8
+     */
+    @RequestMapping("fore_buy")
+    public String buy(Model model, String[] oiid, HttpSession session) {
+        List<OrderItemExpand> orderItemExpands = new ArrayList<>();
+        float total = 0;
+
+        for (String strId : oiid) {
+            int id = Integer.parseInt(strId);
+            OrderItemExpand orderItemExpand = orderItemService.getE(id);
+            total += orderItemExpand.getProduct().getPromote_price() * orderItemExpand.getNumber();
+            orderItemExpands.add(orderItemExpand);
+        }
+
+        session.setAttribute("ois", orderItemExpands);
+        model.addAttribute("total", total);
+
+        return "fore/buy";
+    }
+
+    /**
+     * @Description: 添加购物车
+     * @Author: hejie
+     * @Date: 2019/8/8
+     */
+    @RequestMapping("fore_addcart")
+    @ResponseBody
+    public String addcart(int pid, int num, HttpSession session) {
+        uOrAOrderItem(pid, num, session);
+
+        return "success";
+    }
+
+    /**
+     * @Description: 更新或修改订单项
+     * @Author: hejie
+     * @Date: 2019/8/8
+     */
+    private int uOrAOrderItem(int pid, int num, HttpSession session) {
         Product product = productService.get(pid);
         int oiid = 0;
         User user = (User)session.getAttribute("user");
@@ -264,30 +310,68 @@ public class ForeController {
             oiid = orderItem.getId();
         }
 
-        return "redirect:fore_buy?oiid=" + oiid;
+        return oiid;
     }
 
     /**
-     * @Description: 结算页面
+     * @Description: 查看购物车
      * @Author: hejie
      * @Date: 2019/8/8
      */
-    @RequestMapping("fore_buy")
-    public String buy(Model model, String[] oiid, HttpSession session) {
-        List<OrderItemExpand> orderItemExpands = new ArrayList<>();
-        float total = 0;
+    @RequestMapping("fore_cart")
+    public String cart(Model model, HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        List<OrderItemExpand> orderItemExpands = orderItemService.listEByU(user.getId());
+        model.addAttribute("ois", orderItemExpands);
 
-        for (String strId : oiid) {
-            int id = Integer.parseInt(strId);
-            OrderItemExpand orderItemExpand = orderItemService.getE(id);
-            total += orderItemExpand.getProduct().getPromote_price() * orderItemExpand.getNumber();
-            orderItemExpands.add(orderItemExpand);
+        return "fore/cart";
+    }
+
+    /**
+     * @Description: 调整订单项数量
+     * @Author: hejie
+     * @Date: 2019/8/8
+     */
+    @RequestMapping("fore_orderitem_change")
+    @ResponseBody
+    public String orderitem_change(HttpSession session, int pid, int number) {
+        User user = (User)session.getAttribute("user");
+
+        if (null == user) {
+            return "failure";
         }
 
-        session.setAttribute("ois", orderItemExpands);
-        model.addAttribute("total", total);
+        List<OrderItemExpand> orderItemExpands = orderItemService.listEByU(user.getId());
 
-        return "fore/buy";
+        for (OrderItemExpand orderItemExpand : orderItemExpands) {
+
+            if (orderItemExpand.getProduct().getId() == pid) {
+                orderItemExpand.setNumber(number);
+                orderItemService.update(orderItemExpand);
+                break;
+            }
+        }
+
+        return "success";
+    }
+
+    /**
+     * @Description: 删除订单项
+     * @Author: hejie
+     * @Date: 2019/8/8
+     */
+    @RequestMapping("fore_orderitem_delete")
+    @ResponseBody
+    public String orderitem_delete(HttpSession session, int oiid) {
+        User user = (User)session.getAttribute("user");
+
+        if (null == user) {
+            return "failure";
+        }
+
+        orderItemService.delete(oiid);
+
+        return "success";
     }
 
 }

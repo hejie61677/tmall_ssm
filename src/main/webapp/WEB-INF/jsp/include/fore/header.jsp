@@ -22,7 +22,7 @@
                 num = "0";
             }
 
-            let sign = (num === (num = Math.abs(num)));
+            let sign = (num === (num = Math.abs(num).toString()));
             num = Math.floor(num * 100 + 0.50000000001);
             let cents = num % 100;
             num = Math.floor(num / 100).toString();
