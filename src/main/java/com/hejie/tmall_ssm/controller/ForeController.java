@@ -229,4 +229,41 @@ public class ForeController {
 
         return "fore/searchResult";
     }
+
+    /**
+     * @Description: 立即购买
+     * @Author: hejie
+     * @Date: 2019/8/7
+     */
+    @RequestMapping("forebuyone")
+    public String buyone(int pid, int num, HttpSession session) {
+        Product product = productService.get(pid);
+        int oiid = 0;
+        User user = (User)session.getAttribute("user");
+        boolean isfound = false;
+        List<OrderItemExpand>  orderItemExpands = orderItemService.listEByU(user.getId());
+
+        for (OrderItemExpand orderItemExpand : orderItemExpands) {
+
+            if (orderItemExpand.getProduct().getId().intValue() == product.getId().intValue()) {
+                orderItemExpand.setNumber(orderItemExpand.getNumber() + num);
+                orderItemService.update(orderItemExpand);
+                isfound = true;
+                oiid = orderItemExpand.getId();
+                break;
+            }
+        }
+
+        if (!isfound) {
+            OrderItem orderItem = new OrderItem();
+            orderItem.setUid(user.getId());
+            orderItem.setNumber(num);
+            orderItem.setPid(pid);
+            orderItemService.add(orderItem);
+            oiid = orderItem.getId();
+        }
+
+        return "redirect:forebuy?oiid=" + oiid;
+    }
+
 }

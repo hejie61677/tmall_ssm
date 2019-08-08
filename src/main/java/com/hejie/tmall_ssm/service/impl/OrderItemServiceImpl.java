@@ -54,10 +54,19 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public List list() {
+    public List<OrderItem> list() {
         OrderItemExample orderItemExample = new OrderItemExample();
         orderItemExample.setOrderByClause("id asc");
         return orderItemMapper.selectByExample(orderItemExample);
+    }
+
+    @Override
+    public List<OrderItemExpand> listE() {
+        OrderItemExample orderItemExample = new OrderItemExample();
+        orderItemExample.setOrderByClause("id asc");
+        List<OrderItem> orderItems = orderItemMapper.selectByExample(orderItemExample);
+
+        return getOrderItemExpandsByOrderItems(orderItems);
     }
 
     @Override
@@ -73,23 +82,14 @@ public class OrderItemServiceImpl implements OrderItemService {
         orderItemExample.createCriteria().andOidEqualTo(orderExpand.getId());
         orderItemExample.setOrderByClause("id asc");
         List<OrderItem> orderItems = orderItemMapper.selectByExample(orderItemExample);
-        List<OrderItemExpand> orderItemExpands = new ArrayList<>();
-        OrderItemExpand orderItemExpand;
-
-        for (OrderItem orderItem : orderItems) {
-            orderItemExpand = new OrderItemExpand();
-            orderItemExpand.setOrderItem(orderItem);
-            orderItemExpands.add(orderItemExpand);
-        }
-
-        setProduct(orderItemExpands);
+        List<OrderItemExpand> orderItemExpands = getOrderItemExpandsByOrderItems(orderItems);
 
         float total = 0;
         int totalNumber = 0;
 
-        for (OrderItemExpand orderItemExpandF : orderItemExpands) {
-            total += orderItemExpandF.getNumber() * orderItemExpandF.getProduct().getPromote_price();
-            totalNumber += orderItemExpandF.getNumber();
+        for (OrderItemExpand orderItemExpand : orderItemExpands) {
+            total += orderItemExpand.getNumber() * orderItemExpand.getProduct().getPromote_price();
+            totalNumber += orderItemExpand.getNumber();
         }
 
         orderExpand.setTotal(total);
@@ -98,6 +98,9 @@ public class OrderItemServiceImpl implements OrderItemService {
         orderExpand.setOrderItemExpands(orderItemExpands);
     }
 
+    /**
+     *  设置订单项关联的产品
+     */
     public void setProduct(List<OrderItemExpand> orderItemExpands) {
         for (OrderItemExpand orderItemExpand : orderItemExpands) {
             setProduct(orderItemExpand);
@@ -125,4 +128,39 @@ public class OrderItemServiceImpl implements OrderItemService {
 
         return count;
     }
+
+    @Override
+    public List<OrderItem> listByU(int uid) {
+        OrderItemExample orderItemExample = new OrderItemExample();
+        orderItemExample.createCriteria().andUidEqualTo(uid).andOidIsNull();
+
+        return orderItemMapper.selectByExample(orderItemExample);
+    }
+
+    @Override
+    public List<OrderItemExpand> listEByU(int uid) {
+        OrderItemExample orderItemExample = new OrderItemExample();
+        orderItemExample.createCriteria().andUidEqualTo(uid).andOidIsNull();
+        List<OrderItem> orderItems = orderItemMapper.selectByExample(orderItemExample);
+
+        return getOrderItemExpandsByOrderItems(orderItems);
+    }
+
+    /**
+     *  根据订单项列表获取订单项拓展列表
+     */
+    public List<OrderItemExpand> getOrderItemExpandsByOrderItems(List<OrderItem> orderItems) {
+        List<OrderItemExpand> orderItemExpands = new ArrayList<>();
+        OrderItemExpand orderItemExpand;
+
+        for (OrderItem orderItem : orderItems) {
+            orderItemExpand = new OrderItemExpand();
+            orderItemExpand.setOrderItem(orderItem);
+            setProduct(orderItemExpand);
+            orderItemExpands.add(orderItemExpand);
+        }
+
+        return orderItemExpands;
+    }
+
 }

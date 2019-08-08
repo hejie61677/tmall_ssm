@@ -30,7 +30,10 @@ public interface OrderItemService {
     OrderItemExpand getE(int id);
 
     //查询列表
-    List list();
+    List<OrderItem> list();
+
+    //查询列表-拓展
+    List<OrderItemExpand> listE();
 
     //填充订单属性-多个订单
     void fill(List<OrderExpand> orderExpands);
@@ -40,5 +43,11 @@ public interface OrderItemService {
 
     //获取销售量
     int getSales(int pid);
+
+    //通过用户id获取订单项列表
+    List<OrderItem> listByU (int uid);
+
+    //通过用户id获取订单项列表-拓展
+    List<OrderItemExpand> listEByU (int uid);
 
 }
