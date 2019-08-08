@@ -4,7 +4,7 @@
     <img src="img/site/logo.gif" class="logo" id="log">
 </a>
 
-<form action="foresearch" method="post">
+<form action="fore_search" method="post">
     <div class="searchDiv">
         <input name="keyword" type="text" value="${param.keyword}" placeholder="时尚男鞋 太阳镜">
         <button type="submit" class="searchButton">搜索</button>
@@ -12,7 +12,7 @@
             <c:forEach items="${cs}" var="c" varStatus="st">
                 <c:if test="${st.count >= 5 and st.count <= 8}">
                     <span>
-                        <a href="forecategory?cid=${c.id}">
+                        <a href="fore_category?cid=${c.id}">
                             ${c.name}
                         </a>
                         <c:if test="${st.count != 8}">

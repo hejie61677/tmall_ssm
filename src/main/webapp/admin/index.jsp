@@ -2,5 +2,5 @@
 <link href="favicon.ico" mce_href="favicon.ico" rel="icon" type="image/x-icon">
 
 <%
-    response.sendRedirect("../tmall_ssm/forehome");
+    response.sendRedirect("../tmall_ssm/fore_home");
 %>

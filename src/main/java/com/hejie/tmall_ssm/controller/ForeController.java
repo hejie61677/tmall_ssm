@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class ForeController {
       * @Author: hejie
       * @Date: 2019/7/22
       */
-    @RequestMapping("forehome")
+    @RequestMapping("fore_home")
     public String home(Model model) {
         List<CategoryExpand> categoryExpands = categoryService.listE();
         productService.fill(categoryExpands);
@@ -70,7 +71,7 @@ public class ForeController {
       * @Author: hejie
       * @Date: 2019/7/25
       */
-    @RequestMapping("foreregister")
+    @RequestMapping("fore_register")
     public String register(Model model, User user) {
         String name = user.getName();
         name = HtmlUtils.htmlEscape(name);
@@ -94,7 +95,7 @@ public class ForeController {
      * @Author: hejie
      * @Date: 2019/7/26
      */
-    @RequestMapping("forelogin")
+    @RequestMapping("fore_login")
     public String login(@RequestParam("name") String name, @RequestParam("password") String password, Model model, HttpSession session) {
         name = HtmlUtils.htmlEscape(name);
         User user = userService.get(name, password);
@@ -104,7 +105,7 @@ public class ForeController {
             return "fore/login";
         } else {
             session.setAttribute("user", user);
-            return "redirect:forehome";
+            return "redirect:fore_home";
         }
     }
 
@@ -113,11 +114,11 @@ public class ForeController {
       * @Author: hejie
       * @Date: 2019/7/29
       */
-    @RequestMapping("forelogout")
+    @RequestMapping("fore_logout")
     public String logout(HttpSession session) {
         session.removeAttribute("user");
 
-        return "redirect:forehome";
+        return "redirect:fore_home";
     }
 
     /**
@@ -125,7 +126,7 @@ public class ForeController {
      * @Author: hejie
      * @Date: 2019/7/31
      */
-    @RequestMapping("foreproduct")
+    @RequestMapping("fore_product")
     public String product( int pid, Model model) {
         ProductExpand productExpand = productService.getPe(pid);
 
@@ -149,9 +150,9 @@ public class ForeController {
      * @Author: hejie
      * @Date: 2019/8/2
      */
-    @RequestMapping("forelogincheck")
+    @RequestMapping("fore_login_check")
     @ResponseBody
-    public String logincheck(HttpSession session) {
+    public String login_check(HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user != null) {
             return "success";
@@ -165,9 +166,9 @@ public class ForeController {
      * @Author: hejie
      * @Date: 2019/8/2
      */
-    @RequestMapping("foreloginajax")
+    @RequestMapping("fore_login_ajax")
     @ResponseBody
-    public String loginajax(@RequestParam("name") String name, @RequestParam("password") String password, HttpSession session) {
+    public String login_ajax(@RequestParam("name") String name, @RequestParam("password") String password, HttpSession session) {
         name = HtmlUtils.htmlEscape(name);
         User user = userService.get(name, password);
 
@@ -184,7 +185,7 @@ public class ForeController {
      * @Author: hejie
      * @Date: 2019/8/2
      */
-    @RequestMapping("forecategory")
+    @RequestMapping("fore_category")
     public String category (int cid, String sort, Model model) {
         CategoryExpand categoryExpand = categoryService.getE(cid);
         productService.fill(categoryExpand);
@@ -220,7 +221,7 @@ public class ForeController {
       * @Author: hejie
       * @Date: 2019/8/2
       */
-    @RequestMapping("foresearch")
+    @RequestMapping("fore_search")
     public String search(String keyword, Model model) {
         PageHelper.offsetPage(0, 20);
         List<ProductExpand> productExpands = productService.search(keyword);
@@ -235,7 +236,7 @@ public class ForeController {
      * @Author: hejie
      * @Date: 2019/8/7
      */
-    @RequestMapping("forebuyone")
+    @RequestMapping("fore_buyone")
     public String buyone(int pid, int num, HttpSession session) {
         Product product = productService.get(pid);
         int oiid = 0;
@@ -263,7 +264,30 @@ public class ForeController {
             oiid = orderItem.getId();
         }
 
-        return "redirect:forebuy?oiid=" + oiid;
+        return "redirect:fore_buy?oiid=" + oiid;
+    }
+
+    /**
+     * @Description: 结算页面
+     * @Author: hejie
+     * @Date: 2019/8/8
+     */
+    @RequestMapping("fore_buy")
+    public String buy(Model model, String[] oiid, HttpSession session) {
+        List<OrderItemExpand> orderItemExpands = new ArrayList<>();
+        float total = 0;
+
+        for (String strId : oiid) {
+            int id = Integer.parseInt(strId);
+            OrderItemExpand orderItemExpand = orderItemService.getE(id);
+            total += orderItemExpand.getProduct().getPromote_price() * orderItemExpand.getNumber();
+            orderItemExpands.add(orderItemExpand);
+        }
+
+        session.setAttribute("ois", orderItemExpands);
+        model.addAttribute("total", total);
+
+        return "fore/buy";
     }
 
 }

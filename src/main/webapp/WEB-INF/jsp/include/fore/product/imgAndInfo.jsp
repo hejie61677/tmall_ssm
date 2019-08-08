@@ -44,7 +44,7 @@
         });
 
         $(".addCartLink").click(function() {
-            const page = "forelogincheck";
+            const page = "fore_login_check";
             $.get(
                 page,
                 function(result) {
@@ -75,7 +75,7 @@
             return false;
         });
         $(".buyLink").click(function() {
-            const page = "forelogincheck";
+            const page = "fore_login_check";
             $.get(
                 page,
                 function(result) {
@@ -100,7 +100,7 @@
                 return false;
             }
 
-            const page = "foreloginajax";
+            const page = "fore_login_ajax";
             $.get(
                 page,
                 {"name":name, "password":password},
@@ -167,7 +167,6 @@
             <div class="productPriceDiv">
                 <div class="gouwujuanDiv"><img height="16px" src="img/site/gouwujuan.png">
                     <span> 全天猫实物商品通用 </span>
-
                 </div>
                 <div class="originalDiv">
                     <span class="originalPriceDesc">价格</span>
@@ -226,7 +225,7 @@
         </div>
 
         <div class="buyDiv">
-            <a class="buyLink" href="forebuyone?pid=${p.id}"><button class="buyButton">立即购买</button></a>
+            <a class="buyLink" href="fore_buyone?pid=${p.id}"><button class="buyButton">立即购买</button></a>
             <a href="#nowhere" class="addCartLink"><button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button></a>
         </div>
 

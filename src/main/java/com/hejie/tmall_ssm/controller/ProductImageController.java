@@ -1,6 +1,5 @@
 package com.hejie.tmall_ssm.controller;
 
-import com.hejie.tmall_ssm.pojo.Product;
 import com.hejie.tmall_ssm.pojo.ProductExpand;
 import com.hejie.tmall_ssm.pojo.ProductImage;
 import com.hejie.tmall_ssm.service.ProductImageService;

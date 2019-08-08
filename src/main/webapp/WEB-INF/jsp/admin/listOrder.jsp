@@ -65,7 +65,7 @@
                                             <img width="40px" height="40px" src="img/productSingle/${oi.productExpand.firstProductImage.id}.jpg"
                                         </td>
                                         <td>
-                                            <a href="foreproduct?pid=${oi.product.id}">
+                                            <a href="fore_product?pid=${oi.product.id}">
                                                 <span>${oi.product.name}</span>
                                             </a>
                                         </td>

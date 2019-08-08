@@ -10,7 +10,7 @@
 
     <c:if test="${!empty user}">
         <a href="loginPage">${user.name}</a>
-        <a href="forelogout">退出</a>
+        <a href="fore_logout">退出</a>
     </c:if>
 
     <c:if test="${empty user}">

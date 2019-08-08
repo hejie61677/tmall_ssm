@@ -19,7 +19,7 @@
             <div class="row show1">
                 <c:forEach items="${ps}" var="p">
                     <c:if test="${!empty p.sub_title}">
-                        <a href="foreproduct?pid=${p.id}">
+                        <a href="fore_product?pid=${p.id}">
                             <c:forEach items="${fn:split(p.sub_title, ' ')}" var="title" varStatus="st">
                                 <c:if test="${st.index == 0}">
                                     ${title}

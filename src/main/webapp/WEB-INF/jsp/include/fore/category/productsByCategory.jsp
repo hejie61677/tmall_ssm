@@ -13,14 +13,14 @@
         <c:if test="${stc.count <= categorycount}">
             <div class="productUnit" price="${p.promote_price}">
                 <div class="productUnitFrame">
-                    <a href="foreproduct?pid=${p.id}">
+                    <a href="fore_product?pid=${p.id}">
                         <img class="productImage" src="img/productSingle_middle/${p.firstProductImage.id}.jpg">
                     </a>
                     <span class="productPrice">¥<fmt:formatNumber type="number" value="${p.promote_price}" minFractionDigits="2"/></span>
-                    <a class="productLink" href="foreproduct?pid=${p.id}">
+                    <a class="productLink" href="fore_product?pid=${p.id}">
                             ${fn:substring(p.name, 0, 50)}
                     </a>
-                    <a  class="tmallLink" href="foreproduct?pid=${p.id}">
+                    <a  class="tmallLink" href="fore_product?pid=${p.id}">
                         天猫专卖
                     </a>
                     <div class="show1 productInfo">
