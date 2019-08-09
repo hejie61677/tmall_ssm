@@ -10,24 +10,39 @@
     <!--启动注解识别-->
     <context:annotation-config/>
 
+    <!--指定package扫描-->
     <context:component-scan base-package="com.hejie.tmall_ssm.controller">
-        <context:include-filter type="annotation"
-                                expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <mvc:annotation-driven />
+    <!--处理请求映射-->
+    <mvc:annotation-driven/>
 
     <!--开通静态资源的访问-->
-    <mvc:default-servlet-handler />
+    <mvc:default-servlet-handler/>
 
     <!-- 视图定位 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass"
-                  value="org.springframework.web.servlet.view.JstlView" />
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
 
     <!-- 对上传文件的解析-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <!--登录拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/fore_*"/>
+            <bean class="com.hejie.tmall_ssm.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+        <!--其他拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/fore_*"/>
+            <bean class="com.hejie.tmall_ssm.interceptor.OtherInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
