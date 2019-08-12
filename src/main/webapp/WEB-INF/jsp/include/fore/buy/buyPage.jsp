@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 
 <div class="buyPageDiv">
-    <form action="fore_createOrder" method="post">
+    <form action="fore_order_create" method="post">
         <div class="buyFlow">
             <img class="pull-left" src="img/site/simpleLogo.png">
             <img class="pull-right" src="img/site/buyflow.png">

@@ -1,5 +1,8 @@
 package com.hejie.tmall_ssm.test;
 
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,17 +17,29 @@ import java.sql.Statement;
 public class TestTmall {
 
     public static void main(String args[]) {
+        //读取properties
+        PropertiesConfiguration config = null;
+        try {
+            config = new PropertiesConfiguration("jdbc.properties");
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+
+        if (config == null) {
+            return;
+        }
+
         //准备分类测试数据：
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(config.getString("jdbc.driver"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
         try (
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tmall_database?useUnicode=true&characterEncoding=utf8", "root", "Hejie123");
-            Statement stat = con.createStatement();
-            ) {
+            Connection con = DriverManager.getConnection(config.getString("jdbc.url"), config.getString("jdbc.username"), config.getString("jdbc.password"));
+            Statement stat = con.createStatement()
+        ) {
 
             stat.execute("delete from category");
             for (int i = 1; i <= 10; i++) {

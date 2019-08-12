@@ -2,6 +2,7 @@ package com.hejie.tmall_ssm.service;
 
 import com.hejie.tmall_ssm.pojo.Order;
 import com.hejie.tmall_ssm.pojo.OrderExpand;
+import com.hejie.tmall_ssm.pojo.OrderItemExpand;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public interface OrderService {
     //新增
     void add(Order order);
 
+    //新增-根据已存在(已添加购物车,但未下单)订单项
+    float add(Order order, List<OrderItemExpand> orderItemExpands);
+
     //删除
     void delete(int id);
 
@@ -36,6 +40,9 @@ public interface OrderService {
     OrderExpand getE(int id);
 
     //获取订单列表
-    List list();
+    List<OrderExpand> list();
+
+    //获取订单列表-根据具体用户和订单状态
+    List<OrderExpand> list(int uid, String excludedStatus);
 
 }

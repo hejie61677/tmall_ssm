@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.hejie.tmall_ssm.comparator.*;
 import com.hejie.tmall_ssm.pojo.*;
 import com.hejie.tmall_ssm.service.*;
+import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -370,6 +373,102 @@ public class ForeController {
         }
 
         orderItemService.delete(oiid);
+
+        return "success";
+    }
+
+    /**
+     * @Description: 新建订单
+     * @Author: hejie
+     * @Date: 2019/8/9
+     */
+    @RequestMapping("fore_order_create")
+    public String order_create(Model model, Order order, HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        Date date = new Date();
+        String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(date) + RandomUtils.nextInt(10000);
+        order.setOrder_code(orderCode);
+        order.setCreate_date(date);
+        order.setUid(user.getId());
+        order.setStatus(OrderService.waitPay);
+        List<OrderItemExpand> orderItemExpands = (List<OrderItemExpand>) session.getAttribute("ois");
+        float total = orderService.add(order, orderItemExpands);
+        String param = "?oid=" + order.getId() + "&total=" + total;
+
+        return "redirect:foreAlipay" + param;
+    }
+
+    /**
+     * @Description: 支付跳转成功页
+     * @Author: hejie
+     * @Date: 2019/8/9
+     */
+    @RequestMapping("fore_payed")
+    public String payed(int oid, float total, Model model) {
+        Order order = orderService.get(oid);
+        order.setStatus(OrderService.waitDelivery);
+        order.setPay_date(new Date());
+        orderService.update(order);
+        model.addAttribute("o", order);
+
+        return "fore/payed";
+    }
+
+    /**
+     * @Description: 已购买订单
+     * @Author: hejie
+     * @Date: 2019/8/12
+     */
+    @RequestMapping("fore_bought")
+    public String bought(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        List<OrderExpand> orderExpands = orderService.list(user.getId(), OrderService.delete);
+        orderItemService.fill(orderExpands);
+        model.addAttribute("os", orderExpands);
+
+        return "fore/bought";
+    }
+
+    /**
+     * @Description: 确认收货准备
+     * @Author: hejie
+     * @Date: 2019/8/12
+     */
+    @RequestMapping("fore_confirm")
+    public String comfirm(Model model, int oid) {
+        OrderExpand orderExpand = orderService.getE(oid);
+        orderItemService.fill(orderExpand);
+        model.addAttribute("o", orderExpand);
+
+        return "fore/confirm";
+    }
+
+    /**
+     * @Description: 确认收货
+     * @Author: hejie
+     * @Date: 2019/8/12
+     */
+    @RequestMapping("fore_confirmed")
+    public String comfirmed(int oid) {
+        OrderExpand orderExpand = orderService.getE(oid);
+        orderExpand.setStatus(OrderService.waitReview);
+        orderExpand.setConfirm_date(new Date());
+        orderService.update(orderExpand);
+
+        return "fore/confirmed";
+    }
+
+    /**
+     * @Description: 删除订单
+     * @Author: hejie
+     * @Date: 2019/8/12
+     */
+    @RequestMapping("fore_order_delete")
+    @ResponseBody
+    public String order_delete(int oid) {
+        OrderExpand orderExpand = orderService.getE(oid);
+        orderExpand.setStatus(OrderService.delete);
+        orderService.update(orderExpand);
 
         return "success";
     }
