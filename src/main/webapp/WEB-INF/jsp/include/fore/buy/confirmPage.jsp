@@ -4,10 +4,10 @@
     <div class="confirmPayImageDiv">
         <img src="img/site/comformPayFlow.png">
         <div class="confirmPayTime1">
-            <fmt:formatDate value="${o.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+            <fmt:formatDate value="${o.create_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
         </div>
         <div  class="confirmPayTime2">
-            <fmt:formatDate value="${o.payDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+            <fmt:formatDate value="${o.pay_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
         </div>
         <div class="confirmPayTime3">
             yyyy-MM-dd HH:mm:ss
@@ -30,7 +30,7 @@
             </thead>
             <c:forEach items="${o.orderItemExpands}" var="oi">
                 <tr>
-                    <td><img width="50px" src="img/productSingle_middle/${oi.product.firstProductImage.id}.jpg"></td>
+                    <td><img width="50px" src="img/productSingle_middle/${oi.productExpand.firstProductImage.id}.jpg"></td>
                     <td class="confirmPayOrderItemProductLink">
                         <a href="#nowhere">${oi.product.name}</a>
                     </td>

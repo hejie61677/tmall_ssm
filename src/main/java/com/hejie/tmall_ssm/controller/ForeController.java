@@ -107,7 +107,11 @@ public class ForeController {
             return "fore/login";
         } else {
             session.setAttribute("user", user);
-            return "redirect:fore_home";
+            if ("admin".equals(user.getName())) {
+                return "redirect:admin_category_list";
+            } else {
+                return "redirect:fore_home";
+            }
         }
     }
 
@@ -471,6 +475,47 @@ public class ForeController {
         orderService.update(orderExpand);
 
         return "success";
+    }
+
+    /**
+     * @Description: 评论商品
+     * @Author: hejie
+     * @Date: 2019/8/12
+     */
+    @RequestMapping("fore_review")
+    public String review(Model model, int oid) {
+        OrderExpand orderExpand = orderService.getE(oid);
+        orderItemService.fill(orderExpand);
+        ProductExpand productExpand = orderExpand.getOrderItemExpands().get(0).getProductExpand();
+        List<ReviewExpand> reviewExpands = reviewService.listE(productExpand.getId());
+        productService.setSaleAndReview(productExpand);
+        model.addAttribute("o", orderExpand);
+        model.addAttribute("p", productExpand);
+        model.addAttribute("reviews", reviewExpands);
+
+        return "fore/review";
+    }
+
+    /**
+     * @Description: 提交评论
+     * @Author: hejie
+     * @Date: 2019/8/13
+     */
+    @RequestMapping("fore_reviewed")
+    public String reviewed(HttpSession session, @RequestParam("oid") int oid, @RequestParam("pid") int pid, String content) {
+        Order order = orderService.get(oid);
+        order.setStatus(OrderService.finish);
+        content = HtmlUtils.htmlEscape(content);
+        User user = (User) session.getAttribute("user");
+        Review review = new Review();
+        review.setContent(content);
+        review.setPid(pid);
+        review.setCreate_date(new Date());
+        review.setUid(user.getId());
+        reviewService.add(review, order);
+        String params = "?oid="+oid+"&showonly=true";
+
+        return "redirect:fore_review" + params;
     }
 
 }

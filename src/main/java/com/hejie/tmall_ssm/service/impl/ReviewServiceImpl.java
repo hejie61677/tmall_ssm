@@ -1,13 +1,17 @@
 package com.hejie.tmall_ssm.service.impl;
 
 import com.hejie.tmall_ssm.mapper.ReviewMapper;
+import com.hejie.tmall_ssm.pojo.Order;
 import com.hejie.tmall_ssm.pojo.Review;
 import com.hejie.tmall_ssm.pojo.ReviewExample;
 import com.hejie.tmall_ssm.pojo.ReviewExpand;
+import com.hejie.tmall_ssm.service.OrderService;
 import com.hejie.tmall_ssm.service.ReviewService;
 import com.hejie.tmall_ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +31,18 @@ public class ReviewServiceImpl implements ReviewService {
     @Autowired
     UserService userService;
 
+    @Autowired
+    OrderService orderService;
+
     @Override
     public void add(Review review) {
         reviewMapper.insert(review);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackForClassName = "Exception")
+    public void add(Review review, Order order) {
+
     }
 
     @Override

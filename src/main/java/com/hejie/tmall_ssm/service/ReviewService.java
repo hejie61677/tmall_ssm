@@ -1,5 +1,6 @@
 package com.hejie.tmall_ssm.service;
 
+import com.hejie.tmall_ssm.pojo.Order;
 import com.hejie.tmall_ssm.pojo.Review;
 import com.hejie.tmall_ssm.pojo.ReviewExpand;
 
@@ -15,6 +16,9 @@ public interface ReviewService {
 
     //新增评论
     void add(Review review);
+
+    //新增评论且更新订单
+    void add(Review review, Order order);
 
     //删除评论
     void delete(int id);

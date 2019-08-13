@@ -1,4 +1,15 @@
+<%@ page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Calendar"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+
+<%
+    Calendar calendar = Calendar.getInstance();
+    calendar.add(Calendar.DATE, 2);
+    Date date = calendar.getTime();
+    SimpleDateFormat format = new SimpleDateFormat("MM月dd日");
+    String delivery_date = format.format(date);
+%>
 
 <div class="payedDiv">
     <div class="payedTextDiv">
@@ -12,7 +23,7 @@
             <li>实付款：<span class="payedInfoPrice">
             ￥<fmt:formatNumber type="number" value="${param.total}" minFractionDigits="2"/>
             </li>
-            <li>预计08月10日送达</li>
+            <li>预计<%=delivery_date%>送达</li>
         </ul>
         <div class="payedCheckLinkDiv">
             您可以
