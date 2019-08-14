@@ -32,7 +32,6 @@ public class UserController {
       */
     @RequestMapping("admin_user_list")
     public String list(Model model, Page page) {
-
         PageHelper.offsetPage(page.getStart(), page.getCount());
         List<User> users = userService.list();
         int total = (int) new PageInfo<>(users).getTotal();

@@ -215,6 +215,8 @@ public class ForeController {
                     categoryExpand.getProducts().sort(new ProductAllComparator());
                     break;
             }
+        } else {
+            categoryExpand.getProducts().sort(new ProductAllComparator());
         }
 
         model.addAttribute("c", categoryExpand);

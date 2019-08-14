@@ -5856,7 +5856,7 @@ button.list-group-item-danger.active:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
-  filter: alpha(opacity=50);
+  filter: alpha(opacitypayedCheckLinkDiv0);
   opacity: .5;
 }
 button.close {

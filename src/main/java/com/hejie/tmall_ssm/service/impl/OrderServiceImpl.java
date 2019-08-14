@@ -79,8 +79,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderExpand> list() {
         OrderExample orderExample = new OrderExample();
-        orderExample.setOrderByClause("id asc");
-
+        orderExample.setOrderByClause("id desc");
         return getOEbyO(orderMapper.selectByExample(orderExample));
     }
 

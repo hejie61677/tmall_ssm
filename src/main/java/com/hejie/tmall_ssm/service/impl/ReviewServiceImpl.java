@@ -42,7 +42,8 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackForClassName = "Exception")
     public void add(Review review, Order order) {
-
+        orderService.update(order);
+        add(review);
     }
 
     @Override
