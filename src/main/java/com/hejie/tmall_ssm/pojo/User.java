@@ -7,6 +7,8 @@ public class User {
 
     private String password;
 
+    private String md5salt;
+
     public Integer getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getMd5salt() {
+        return md5salt;
+    }
+
+    public void setMd5salt(String md5salt) {
+        this.md5salt = md5salt == null ? null : md5salt.trim();
     }
 }

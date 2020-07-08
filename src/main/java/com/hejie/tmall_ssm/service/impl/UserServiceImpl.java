@@ -8,7 +8,6 @@ import com.hejie.tmall_ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 /**
@@ -75,6 +74,19 @@ public class UserServiceImpl implements UserService {
     public User get(String name, String password) {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andNameEqualTo(name).andPasswordEqualTo(password);
+        List<User> users = userMapper.selectByExample(userExample);
+
+        if (users.isEmpty()) {
+            return null;
+        } else {
+            return users.get(0);
+        }
+    }
+
+    @Override
+    public User get(String name) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andNameEqualTo(name);
         List<User> users = userMapper.selectByExample(userExample);
 
         if (users.isEmpty()) {

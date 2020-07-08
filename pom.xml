@@ -12,9 +12,9 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- 依赖包版本号 start -->
-    <spring.version>4.1.3.RELEASE</spring.version>
+    <spring.version>4.3.17.RELEASE</spring.version>
     <pagehelper.version>5.1.2-beta</pagehelper.version>
-    <mysql.version>5.1.6</mysql.version>
+    <mysql.version>8.0.16</mysql.version>
     <mybatis.spring.version>1.2.3</mybatis.spring.version>
     <mybatis.version>3.1.1</mybatis.version>
     <junit.version>4.12</junit.version>
@@ -22,8 +22,9 @@
     <jsqlparser.version>1.0</jsqlparser.version>
     <jackson.version>1.2.7</jackson.version>
     <servlet-api.version>3.1.0</servlet-api.version>
-    <druid.version>1.0.18</druid.version>
-    <log4j.version>1.2.16</log4j.version>
+    <druid.version>1.1.10</druid.version>
+    <log4j.version>1.2.17</log4j.version>
+    <slf4j.version>1.7.21</slf4j.version>
     <commons-logging.version>1.2</commons-logging.version>
     <commons-fileupload.version>1.3.3</commons-fileupload.version>
     <commons-io.version>1.3.2</commons-io.version>
@@ -31,6 +32,7 @@
     <commons-lang.version>2.6</commons-lang.version>
     <aopalliance.version>1.0</aopalliance.version>
     <mybatis-generator.version>1.3.5</mybatis-generator.version>
+    <shiro.version>1.2.4</shiro.version>
     <!-- 依赖包版本号 end -->
   </properties>
 
@@ -128,6 +130,12 @@
     </dependency>
 
     <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
@@ -180,6 +188,43 @@
       <groupId>net.sourceforge.tess4j</groupId>
       <artifactId>tess4j</artifactId>
       <version>3.2.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+        </exclusion>
+        <exclusion>
+          <artifactId>log4j-over-slf4j</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!--shiro权限管理-->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-all</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+
+    <!--java小工具集合-->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>5.3.8</version>
+    </dependency>
+
+    <!--poi 操作Microsoft Office的相关文件所需依赖-->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.9</version>
     </dependency>
 
   </dependencies>
@@ -226,6 +271,7 @@
           <include>**/*.properties</include>
           <include>**/*.xml</include>
           <include>**/*.tld</include>
+          <include>**/*.ini</include>
         </includes>
         <filtering>false</filtering>
       </resource>

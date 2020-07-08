@@ -5,6 +5,11 @@ import com.hejie.tmall_ssm.comparator.*;
 import com.hejie.tmall_ssm.pojo.*;
 import com.hejie.tmall_ssm.service.*;
 import org.apache.commons.lang.math.RandomUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,25 +98,29 @@ public class ForeController {
     }
 
     /**
-     * @Description: 用户登录
+     * @Description: 用户登录(shiro验证)
      * @Author: hejie
      * @Date: 2019/7/26
      */
     @RequestMapping("fore_login")
     public String login(@RequestParam("name") String name, @RequestParam("password") String password, Model model, HttpSession session) {
-        name = HtmlUtils.htmlEscape(name);
-        User user = userService.get(name, password);
-
-        if (null == user) {
-            model.addAttribute("msg", "账号密码错误");
-            return "fore/login";
-        } else {
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(name, password);
+        try {
+            subject.login(token);
+            session.setAttribute("subject", subject);
+            name = HtmlUtils.htmlEscape(name);
+            User user = userService.get(name);
             session.setAttribute("user", user);
             if ("admin".equals(user.getName())) {
                 return "redirect:admin_category_list";
             } else {
                 return "redirect:fore_home";
             }
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "账号或密码错误");
+            return "fore/login";
         }
     }
 
@@ -176,9 +185,10 @@ public class ForeController {
     @ResponseBody
     public String login_ajax(@RequestParam("name") String name, @RequestParam("password") String password, HttpSession session) {
         name = HtmlUtils.htmlEscape(name);
-        User user = userService.get(name, password);
-
-        if (user != null) {
+        User user = userService.get(name);
+        String passwordEncoded = new SimpleHash("md5", password, user.getMd5salt(), 2).toString();
+        //进行认证
+        if (!passwordEncoded.equals(user.getPassword())) {
             session.setAttribute("user", user);
             return "success";
         } else {

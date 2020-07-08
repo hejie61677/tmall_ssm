@@ -45,5 +45,13 @@ public class PageController {
         return "fore/alipay";
     }
 
+    /**
+     *  无权限页面
+     */
+    @RequestMapping("noAccess")
+    public String noAccess() {
+        return "message/noAccess";
+    }
+
 
 }

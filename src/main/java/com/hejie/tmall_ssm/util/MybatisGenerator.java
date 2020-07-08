@@ -21,7 +21,7 @@ public class MybatisGenerator {
 
     public static void main(String[] args) throws Exception {
 
-        String endDay = "2019-07-25";
+        String endDay = "2020-07-08";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = simpleDateFormat.parse(endDay);
         Date now = new Date();

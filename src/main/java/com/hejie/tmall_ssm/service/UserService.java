@@ -37,4 +37,7 @@ public interface UserService {
     //获取单个用户
     User get(String name, String password);
 
+    //获取单个用户
+    User get(String name);
+
 }

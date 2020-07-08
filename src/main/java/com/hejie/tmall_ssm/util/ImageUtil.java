@@ -1,20 +1,11 @@
 package com.hejie.tmall_ssm.util;
 
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-import java.awt.image.DataBuffer;
-import java.awt.image.DataBufferInt;
-import java.awt.image.DirectColorModel;
-import java.awt.image.PixelGrabber;
-import java.awt.image.Raster;
-import java.awt.image.RenderedImage;
-import java.awt.image.WritableRaster;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import java.util.Objects;
 
 /**
   * @Program: tmall_ssm
@@ -40,10 +31,8 @@ public class ImageUtil {
             final ColorModel RGB_OPAQUE = new DirectColorModel(32, RGB_MASKS[0], RGB_MASKS[1], RGB_MASKS[2]);
             DataBuffer buffer = new DataBufferInt((int[]) pg.getPixels(), pg.getWidth() * pg.getHeight());
             WritableRaster raster = Raster.createPackedRaster(buffer, width, height, width, RGB_MASKS, null);
-            BufferedImage img = new BufferedImage(RGB_OPAQUE, raster, false, null);
-            return img;
+            return new BufferedImage(RGB_OPAQUE, raster, false, null);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
@@ -61,10 +50,9 @@ public class ImageUtil {
             }
             Image image = ImageIO.read(srcFile);
             image = resizeImage(image, width, height);
-            ImageIO.write((RenderedImage) image, "jpg", destFile);
+            ImageIO.write((RenderedImage) Objects.requireNonNull(image), "jpg", destFile);
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -84,7 +72,6 @@ public class ImageUtil {
             return buffImg;
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;

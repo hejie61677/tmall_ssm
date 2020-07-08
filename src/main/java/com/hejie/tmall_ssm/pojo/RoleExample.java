@@ -3,14 +3,14 @@ package com.hejie.tmall_ssm.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserExample {
+public class RoleExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UserExample() {
+    public RoleExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -231,146 +231,6 @@ public class UserExample {
 
         public Criteria andNameNotBetween(String value1, String value2) {
             addCriterion("name not between", value1, value2, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordIsNull() {
-            addCriterion("password is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordIsNotNull() {
-            addCriterion("password is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordEqualTo(String value) {
-            addCriterion("password =", value, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordNotEqualTo(String value) {
-            addCriterion("password <>", value, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordGreaterThan(String value) {
-            addCriterion("password >", value, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordGreaterThanOrEqualTo(String value) {
-            addCriterion("password >=", value, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordLessThan(String value) {
-            addCriterion("password <", value, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordLessThanOrEqualTo(String value) {
-            addCriterion("password <=", value, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordLike(String value) {
-            addCriterion("password like", value, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordNotLike(String value) {
-            addCriterion("password not like", value, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordIn(List<String> values) {
-            addCriterion("password in", values, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordNotIn(List<String> values) {
-            addCriterion("password not in", values, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordBetween(String value1, String value2) {
-            addCriterion("password between", value1, value2, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andPasswordNotBetween(String value1, String value2) {
-            addCriterion("password not between", value1, value2, "password");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltIsNull() {
-            addCriterion("md5salt is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltIsNotNull() {
-            addCriterion("md5salt is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltEqualTo(String value) {
-            addCriterion("md5salt =", value, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltNotEqualTo(String value) {
-            addCriterion("md5salt <>", value, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltGreaterThan(String value) {
-            addCriterion("md5salt >", value, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltGreaterThanOrEqualTo(String value) {
-            addCriterion("md5salt >=", value, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltLessThan(String value) {
-            addCriterion("md5salt <", value, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltLessThanOrEqualTo(String value) {
-            addCriterion("md5salt <=", value, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltLike(String value) {
-            addCriterion("md5salt like", value, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltNotLike(String value) {
-            addCriterion("md5salt not like", value, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltIn(List<String> values) {
-            addCriterion("md5salt in", values, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltNotIn(List<String> values) {
-            addCriterion("md5salt not in", values, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltBetween(String value1, String value2) {
-            addCriterion("md5salt between", value1, value2, "md5salt");
-            return (Criteria) this;
-        }
-
-        public Criteria andMd5saltNotBetween(String value1, String value2) {
-            addCriterion("md5salt not between", value1, value2, "md5salt");
             return (Criteria) this;
         }
     }

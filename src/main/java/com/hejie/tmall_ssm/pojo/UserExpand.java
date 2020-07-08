@@ -37,6 +37,7 @@ public class UserExpand extends User {
         this.setName(user.getName());
         this.setId(user.getId());
         this.setPassword(user.getPassword());
+        this.setMd5salt(user.getMd5salt());
     }
 
 }
