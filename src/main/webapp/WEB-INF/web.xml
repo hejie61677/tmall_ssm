@@ -47,7 +47,6 @@
   </servlet-mapping>
 
   <!-- shiro框架配置 -->
-
   <filter>
     <filter-name>shiroFilter</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
